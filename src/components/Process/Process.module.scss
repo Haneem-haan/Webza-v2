@@ -1,0 +1,505 @@
+@use "../../styles/variables" as *;
+
+/* =====================================================
+   WEBZA — PROCESS
+===================================================== */
+
+.process {
+  position: relative;
+  width: 100%;
+  padding: 20px $padding-desktop 130px;
+  background: transparent;
+  color: $color-text;
+  overflow: hidden;
+}
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container {
+  width: 100%;
+  max-width: $container-max;
+  margin: 0 auto;
+}
+
+/* =====================================================
+   LABEL
+===================================================== */
+
+.sectionLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 6px 10px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+
+  color: rgba(245, 245, 245, 0.75);
+
+  font-family: "Epilogue", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sectionLabel span {
+  width: 4px;
+  height: 4px;
+
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+  background: $color-accent;
+}
+
+/* =====================================================
+   HEADING
+===================================================== */
+
+.heading {
+  margin: 25px 0 0;
+
+  max-width: 700px;
+
+  color: #f5f5f5;
+
+  font-family: "Epilogue", sans-serif;
+
+  font-size: clamp(2.8rem, 4vw, 4.8rem);
+  font-weight: 300;
+
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+.timeline {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  width: 100%;
+
+  margin-top: 100px;
+}
+
+/* =====================================================
+   STEP
+===================================================== */
+
+.step {
+  position: relative;
+
+  min-width: 0;
+
+  text-align: center;
+}
+
+/* =====================================================
+   TIMELINE TOP
+===================================================== */
+
+.timelineTop {
+  position: relative;
+
+  width: 100%;
+  height: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =====================================================
+   DOT
+===================================================== */
+
+.dot {
+  position: relative;
+
+  z-index: 5;
+
+  width: 9px;
+  height: 9px;
+
+  flex: 0 0 9px;
+
+  border-radius: 50%;
+
+  background: #000;
+
+  border: 1px solid rgba(255, 210, 0, 0.7);
+
+  transform: scale(0.75);
+
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 0.3s ease,
+    box-shadow 0.35s ease;
+}
+
+.dot span {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: $color-accent;
+
+  transform: translate(-50%, -50%);
+
+  opacity: 0;
+
+  transition: opacity 0.2s ease;
+}
+
+/* =====================================================
+   ACTIVE DOT
+===================================================== */
+
+.stepActive .dot {
+  background: $color-accent;
+
+  transform: scale(1);
+
+  box-shadow:
+    0 0 7px rgba(255, 210, 0, 0.7),
+    0 0 18px rgba(255, 210, 0, 0.25);
+}
+
+.stepActive .dot span {
+  opacity: 1;
+}
+
+/* =====================================================
+   CONNECTING LINE
+   LINE PASSES THROUGH DOT CENTERS
+===================================================== */
+
+.connector {
+  position: absolute;
+
+  z-index: 1;
+
+  left: 50%;
+  right: -50%;
+
+  top: 50%;
+
+  height: 1px;
+
+  transform: translateY(-50%);
+
+  background: rgba(255, 255, 255, 0.12);
+
+  overflow: hidden;
+}
+
+/* Animated yellow line */
+
+.connector span {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: $color-accent;
+
+  transform: scaleX(0);
+
+  transform-origin: left center;
+
+  transition:
+    transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+
+  box-shadow:
+    0 0 7px rgba(255, 210, 0, 0.35);
+}
+
+/* Active connector */
+
+.connectorActive span {
+  transform: scaleX(1);
+}
+
+/* No line after final step */
+
+.step:last-child .connector {
+  display: none;
+}
+
+/* =====================================================
+   STEP CONTENT
+===================================================== */
+
+.stepContent {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  padding-top: 28px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  opacity: 0.55;
+
+  transform: translateY(8px);
+
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Active content */
+
+.stepActive .stepContent {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+/* =====================================================
+   NUMBER
+===================================================== */
+
+.number {
+  color: #f5f5f5;
+
+  font-family: "Epilogue", sans-serif;
+
+  font-size: 1.7rem;
+  font-weight: 300;
+
+  line-height: 1;
+
+  letter-spacing: -0.03em;
+}
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.stepContent h3 {
+  margin: 17px 0 0;
+
+  color: #f5f5f5;
+
+  font-family: "Epilogue", sans-serif;
+
+  font-size: 0.92rem;
+  font-weight: 500;
+
+  line-height: 1.3;
+}
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.stepContent p {
+  width: 100%;
+  max-width: 190px;
+
+  margin: 12px auto 0;
+
+  color: rgba(245, 245, 245, 0.48);
+
+  font-family: "Epilogue", sans-serif;
+
+  font-size: 0.75rem;
+  font-weight: 400;
+
+  line-height: 1.55;
+}
+
+/* =====================================================
+   LARGE DESKTOP
+===================================================== */
+
+@media (max-width: 1400px) {
+  .process {
+    padding-left: $padding-tablet;
+    padding-right: $padding-tablet;
+  }
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1024px) {
+  .process {
+    padding: 90px 48px 110px;
+  }
+
+  .timeline {
+    margin-top: 75px;
+  }
+
+  .stepContent {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .number {
+    font-size: 1.5rem;
+  }
+
+  .stepContent h3 {
+    font-size: 0.72rem;
+  }
+
+  .stepContent p {
+    max-width: 150px;
+    font-size: 0.6rem;
+  }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+  .process {
+    padding: 80px $padding-mobile 90px;
+  }
+
+  .heading {
+    font-size: clamp(2.35rem, 9vw, 3.3rem);
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+
+    gap: 42px;
+
+    margin-top: 60px;
+  }
+
+  .step {
+    text-align: left;
+
+    padding-left: 35px;
+  }
+
+  .timelineTop {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 9px;
+    height: 9px;
+
+    display: block;
+  }
+
+  .dot {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+  }
+
+  /* Vertical connector */
+
+  .connector {
+    left: 4px;
+    right: auto;
+
+    top: 9px;
+    bottom: -42px;
+
+    width: 1px;
+    height: auto;
+
+    transform: none;
+  }
+
+  .connector span {
+    transform: scaleY(0);
+
+    transform-origin: top center;
+  }
+
+  .connectorActive span {
+    transform: scaleY(1);
+  }
+
+  .step:last-child .connector {
+    display: none;
+  }
+
+  /* Mobile content */
+
+  .stepContent {
+    display: block;
+
+    padding: 0;
+
+    text-align: left;
+  }
+
+  .number {
+    font-size: 1.5rem;
+  }
+
+  .stepContent h3 {
+    margin-top: 9px;
+
+    font-size: 0.78rem;
+  }
+
+  .stepContent p {
+    max-width: 280px;
+
+    margin-left: 0;
+
+    font-size: 0.66rem;
+  }
+}
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+  .timeline {
+    gap: 38px;
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .dot,
+  .dot span,
+  .connector span,
+  .stepContent {
+    transition: none;
+  }
+}

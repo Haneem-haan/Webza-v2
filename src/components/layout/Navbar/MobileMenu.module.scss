@@ -1,0 +1,265 @@
+@use "../../../styles/variables" as *;
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: none;
+
+  opacity: 0;
+
+  background: rgba(0, 0, 0, 0.72);
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* =========================================
+   PANEL
+========================================= */
+
+.panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: min(86vw, 430px);
+  height: 100dvh;
+
+  padding: 28px 28px 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #080808;
+
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+
+  transform: translateX(100%);
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 30px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menuLabel {
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+}
+
+.closeButton {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  span {
+    position: absolute;
+
+    width: 17px;
+    height: 1px;
+
+    background: $color-text;
+
+    transition: transform $transition-medium;
+  }
+
+  span:first-child {
+    transform: rotate(45deg);
+  }
+
+  span:last-child {
+    transform: rotate(-45deg);
+  }
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.45);
+
+    span:first-child {
+      transform: rotate(45deg) scaleX(1.15);
+    }
+
+    span:last-child {
+      transform: rotate(-45deg) scaleX(1.15);
+    }
+  }
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 28px;
+}
+
+.navLink {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 38px 1fr auto;
+  align-items: center;
+
+  min-height: 72px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+
+  color: rgba(255, 255, 255, 0.65);
+
+  transition:
+    color $transition-medium,
+    padding-left $transition-medium;
+
+  &:hover {
+    padding-left: 8px;
+
+    color: $color-text;
+
+    .arrow {
+      color: $color-accent;
+      transform: translate(3px, -3px);
+    }
+  }
+}
+
+.number {
+  color: rgba(255, 255, 255, 0.3);
+
+  font-size: 0.6875rem;
+  font-weight: 500;
+}
+
+.label {
+  font-size: clamp(1.6rem, 7vw, 2.3rem);
+  font-weight: 400;
+  line-height: 1;
+
+  letter-spacing: -0.045em;
+}
+
+.arrow {
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 1rem;
+
+  transition:
+    color $transition-medium,
+    transform $transition-medium;
+}
+
+/* =========================================
+   ACTIVE
+========================================= */
+
+.active {
+  color: $color-text;
+
+  .number {
+    color: $color-accent;
+  }
+
+  .arrow {
+    color: $color-accent;
+  }
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+  margin-top: auto;
+  padding-top: 30px;
+
+  p {
+    margin: 0 0 16px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+}
+
+.cta {
+  width: 100%;
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+
+  border-radius: 999px;
+
+  background: $color-accent;
+  color: #050505;
+
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  transition:
+    background $transition-medium,
+    transform $transition-medium;
+
+  span {
+    font-size: 1rem;
+  }
+
+  &:hover {
+    background: $color-accent-hover;
+    transform: translateY(-2px);
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+  .panel {
+    width: 90vw;
+    padding: 22px 20px 24px;
+  }
+
+  .navLink {
+    min-height: 64px;
+
+    grid-template-columns: 30px 1fr auto;
+  }
+
+  .label {
+    font-size: 1.55rem;
+  }
+}

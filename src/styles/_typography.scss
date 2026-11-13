@@ -1,0 +1,71 @@
+@use "./variables" as *;
+
+// =====================================================
+// WEBZA — TYPOGRAPHY
+// =====================================================
+
+:root {
+  --font-display: var(--font-epilogue), sans-serif;
+  --font-body: var(--font-epilogue), sans-serif;
+}
+
+// Display typography
+.display-xl {
+  font-size: clamp(4rem, 7.5vw, 8.5rem);
+  line-height: 0.92;
+  font-weight: 400;
+  letter-spacing: -0.055em;
+}
+
+.display-lg {
+  font-size: clamp(3.25rem, 6vw, 7rem);
+  line-height: 0.94;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+}
+
+.heading-xl {
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  line-height: 0.98;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+
+.heading-lg {
+  font-size: clamp(2.5rem, 4vw, 4.5rem);
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.heading-md {
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.body-lg {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.body {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.body-sm {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.label {
+  font-size: 0.6875rem;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

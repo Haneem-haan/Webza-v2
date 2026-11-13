@@ -1,0 +1,525 @@
+@use "../../styles/variables" as *;
+
+/* =====================================================
+   WEBZA — PROJECT CTA
+===================================================== */
+
+.cta {
+  position: relative;
+
+  width: 100%;
+
+  padding: 10px $padding-desktop 10px;
+
+  background: #000;
+  color: $color-text;
+
+  overflow: hidden;
+}
+
+/* =====================================================
+   CTA CARD
+===================================================== */
+
+.card {
+  position: relative;
+
+  width: 100%;
+  min-height: 260px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 55px 60px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+
+  background: #050505;
+
+  opacity: 0;
+
+  transform: translateY(35px);
+
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+
+  isolation: isolate;
+}
+
+/* =====================================================
+   REVEAL
+===================================================== */
+
+.isVisible .card {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+/* =====================================================
+   BACKGROUND IMAGE
+===================================================== */
+
+.background {
+  position: absolute;
+
+  inset: -8%;
+
+  z-index: -3;
+
+  background-image: url("/images/cta-bg.jpeg");
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  transform: scale(1.02);
+
+  transition:
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s ease;
+}
+
+/* Slight movement when hovering */
+
+.card:hover .background {
+  transform: scale(1.06);
+}
+
+/* =====================================================
+   DARK OVERLAY
+===================================================== */
+
+.overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -2;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.18) 0%,
+      rgba(0, 0, 0, 0.38) 35%,
+      rgba(0, 0, 0, 0.72) 72%,
+      rgba(0, 0, 0, 0.88) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* =====================================================
+   EXTRA DARK EDGE
+===================================================== */
+
+.card::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  border-radius: inherit;
+
+  background:
+    radial-gradient(
+      circle at 15% 50%,
+      rgba(255, 205, 0, 0.06),
+      transparent 38%
+    );
+
+  pointer-events: none;
+}
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 1fr 0.8fr;
+
+  align-items: center;
+
+  gap: 80px;
+}
+
+/* =====================================================
+   LABEL
+===================================================== */
+
+.label {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-bottom: 22px;
+
+  color: rgba(245, 245, 245, 0.62);
+
+  font-family: "Epilogue", sans-serif;
+
+  font-size: 0.68rem;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: 0.07em;
+}
+
+.dot {
+  width: 4px;
+
+  height: 4px;
+
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+
+  background: $color-accent;
+
+  box-shadow:
+    0 0 8px rgba(255, 205, 0, 0.7);
+}
+
+/* =====================================================
+   HEADING
+===================================================== */
+
+.headingWrap h2 {
+  margin: 0;
+
+  color: #f5f5f5;
+
+  font-family: "Epilogue", sans-serif;
+
+  font-size: clamp(3rem, 5vw, 5.2rem);
+
+  font-weight: 300;
+
+  line-height: 0.98;
+
+  letter-spacing: -0.045em;
+}
+
+.headingWrap h2 span {
+  color: rgba(245, 245, 245, 0.48);
+}
+
+/* =====================================================
+   ACTION
+===================================================== */
+
+.action {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  justify-content: center;
+}
+
+.action p {
+  margin: 0 0 28px;
+
+  color: rgba(245, 245, 245, 0.7);
+
+  font-family: "Epilogue", sans-serif;
+
+  font-size: 0.92rem;
+
+  font-weight: 400;
+
+  line-height: 1.55;
+}
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.button {
+  min-height: 48px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 22px;
+
+  padding: 0 20px;
+
+  border: 1px solid $color-accent;
+
+  border-radius: 999px;
+
+  background: $color-accent;
+
+  color: #050505;
+
+  font-family: "Epilogue", sans-serif;
+
+  font-size: 0.76rem;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+
+  background: #ffe44a;
+
+  box-shadow:
+    0 10px 30px rgba(255, 205, 0, 0.18);
+}
+
+.arrow {
+  font-size: 1rem;
+
+  transition: transform 0.3s ease;
+}
+
+.button:hover .arrow {
+  transform: translate(3px, -3px);
+}
+
+/* =====================================================
+   IMAGE LIGHT SWEEP
+===================================================== */
+
+.card::before {
+  content: "";
+
+  position: absolute;
+
+  top: -100%;
+
+  left: -30%;
+
+  width: 30%;
+
+  height: 300%;
+
+  z-index: 1;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.035),
+    rgba(255, 205, 0, 0.055),
+    rgba(255, 255, 255, 0.025),
+    transparent
+  );
+
+  transform: rotate(18deg) translateX(-100%);
+
+  pointer-events: none;
+
+  animation: lightSweep 8s ease-in-out infinite;
+}
+
+@keyframes lightSweep {
+  0% {
+    transform: rotate(18deg) translateX(-130%);
+  }
+
+  45%,
+  100% {
+    transform: rotate(18deg) translateX(500%);
+  }
+}
+
+/* =====================================================
+   LARGE DESKTOP
+===================================================== */
+
+@media (max-width: 1400px) {
+  .cta {
+    padding-left: $padding-tablet;
+
+    padding-right: $padding-tablet;
+  }
+
+  .card {
+    padding: 50px;
+  }
+
+  .content {
+    gap: 60px;
+  }
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1024px) {
+  .cta {
+    padding: 60px 48px 80px;
+  }
+
+  .card {
+    min-height: 240px;
+
+    padding: 45px;
+  }
+
+  .content {
+    grid-template-columns: 1fr 0.75fr;
+
+    gap: 40px;
+  }
+
+  .headingWrap h2 {
+    font-size: clamp(2.7rem, 5vw, 4rem);
+  }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+  .cta {
+    padding: 50px $padding-mobile 70px;
+  }
+
+  .card {
+    min-height: auto;
+
+    padding: 40px 28px;
+
+    border-radius: 18px;
+  }
+
+  .background {
+    background-position: 25% center;
+  }
+
+  .overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.82)
+      );
+  }
+
+  .content {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 35px;
+  }
+
+  .headingWrap h2 {
+    font-size: clamp(2.7rem, 11vw, 4rem);
+
+    line-height: 0.98;
+  }
+
+  .action {
+    width: 100%;
+  }
+
+  .action p {
+    font-size: 0.76rem;
+
+    margin-bottom: 22px;
+  }
+
+  .button {
+    min-height: 45px;
+
+    padding: 0 17px;
+
+    gap: 18px;
+
+    font-size: 0.7rem;
+  }
+}
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+  .cta {
+    padding-top: 40px;
+  }
+
+  .card {
+    padding: 35px 22px;
+
+    border-radius: 16px;
+  }
+
+  .label {
+    margin-bottom: 18px;
+
+    font-size: 0.48rem;
+  }
+
+  .headingWrap h2 {
+    font-size: 2.7rem;
+  }
+
+  .action p {
+    font-size: 0.7rem;
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    opacity: 1;
+
+    transform: none;
+
+    transition: none;
+  }
+
+  .card::before {
+    animation: none;
+  }
+
+  .background {
+    transition: none;
+  }
+}

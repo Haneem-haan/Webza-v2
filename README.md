@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Webza — Digital Creative Studio
 
-## Getting Started
+A high-performance, design-forward website for **Webza**, a digital creative studio specializing in web design, development, and brand identity.
 
-First, run the development server:
+Built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, **SCSS Modules**, and **GSAP**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Features & Architecture
+
+- **Next.js 16 App Router**: Server and client component optimization with static generation and full TypeScript safety.
+- **Lenis Smooth Inertia Scrolling**: Smooth scroll experience with native inertia and anchor link auto-offsetting, automatically disabled when `prefers-reduced-motion` is active.
+- **Micro-Interactions & GSAP**: Coordinated slideout navigation drawer with staggered link reveals and focus management.
+- **Optimized Media Delivery**:
+  - WebP/AVIF automated resizing via `next/image` with responsive `sizes` attributes.
+  - Video loading optimization with `preload="metadata"` and accessible play/pause controls (WCAG 2.2.2).
+  - Web font optimization via `next/font/google` (`Epilogue`), serving self-hosted `.woff2` subsets with zero external CDN round-trips.
+- **Responsive & Accessible (A11y)**:
+  - Skip to main content link for keyboard navigation.
+  - ARIA attributes, semantic headings, and accessible button/link labels.
+  - Device-responsive carousels (dynamic multi-card desktop and full-card mobile sliding).
+- **SEO Ready**:
+  - Full OpenGraph and Twitter card metadata.
+  - Automated `robots.txt` and `sitemap.xml` routes.
+  - Schema.org (`ProfessionalService`) JSON-LD structured data.
+
+---
+
+## 🛠 Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/)
+- **UI Library**: [React 19](https://react.dev/)
+- **Language**: [TypeScript 5](https://www.typescriptlang.org/)
+- **Styling**: SCSS Modules (`sass`) with centralized design tokens & typography scale
+- **Animation**: [GSAP](https://greensock.com/gsap/)
+- **Smooth Scroll**: [Lenis](https://lenis.darkroom.engineering/)
+
+---
+
+## 📂 Project Structure
+
+```
+webza/
+├── public/
+│   ├── images/         # Compressed WebP/JPEG/PNG assets
+│   └── videos/         # Hero video showcase
+├── src/
+│   ├── app/            # App Router pages, layout, robots, and sitemap
+│   │   ├── privacy-policy/
+│   │   ├── terms/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   ├── robots.ts
+│   │   └── sitemap.ts
+│   ├── components/     # Modular React components
+│   │   ├── About/
+│   │   ├── CTA/
+│   │   ├── Footer/
+│   │   ├── home/Hero/
+│   │   ├── layout/Navbar/
+│   │   ├── layout/SmoothScroll.tsx
+│   │   ├── Process/
+│   │   ├── Services/
+│   │   ├── Testimonials/
+│   │   └── Work/
+│   └── styles/         # Global styles, variables, mixins, and typography
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💻 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Install Dependencies
+```bash
+npm install
+```
 
-## Learn More
+### 2. Run the Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to view the application in the browser.
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Production Build & Linting
+```bash
+# Run ESLint checks
+npm run lint
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Build for production
+npm run build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Start production server
+npm run start
+```

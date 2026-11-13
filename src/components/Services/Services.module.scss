@@ -1,0 +1,1022 @@
+@use "../../styles/variables" as *;
+
+/* =====================================================
+   WEBZA — SERVICES
+===================================================== */
+
+.services {
+  position: relative;
+  width: 100%;
+  padding: 35px $padding-desktop 20px;
+
+  background: #000;
+  color: $color-text;
+
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   TRUSTED BRANDS
+===================================================== */
+
+.brands {
+  width: 100%;
+}
+
+.brandsHeader {
+  width: 100%;
+  padding-bottom: 16px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.brandsHeader span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  color: rgba(245, 245, 245, 0.55);
+
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+.brandsHeader i {
+  width: 4px;
+  height: 4px;
+
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+  background: $color-accent;
+}
+
+
+/* =====================================================
+   BRAND MARQUEE
+===================================================== */
+
+.brandMarquee {
+  position: relative;
+
+  width: 100%;
+  overflow: hidden;
+
+  padding: 28px 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 7%,
+    black 93%,
+    transparent 100%
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 7%,
+    black 93%,
+    transparent 100%
+  );
+}
+
+.brandTrack {
+  display: flex;
+
+  width: max-content;
+
+  will-change: transform;
+
+  animation: brandScroll 24s linear infinite;
+}
+
+.brandSet {
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+  width: max-content;
+}
+
+.brand {
+  min-width: 190px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 35px;
+
+  color: rgba(245, 245, 245, 0.62);
+
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  letter-spacing: -0.02em;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.35s ease,
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.brand:nth-child(1) {
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.brand:nth-child(2) {
+  font-weight: 600;
+}
+
+.brand:nth-child(3) {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.brand:nth-child(4) {
+  font-weight: 600;
+}
+
+.brand:nth-child(5) {
+  font-weight: 500;
+}
+
+.brand:nth-child(6) {
+  font-weight: 600;
+}
+
+@keyframes brandScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* =====================================================
+   WHAT WE DO
+===================================================== */
+
+.whatWeDo {
+  width: 100%;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro {
+  display: grid;
+
+  grid-template-columns: 1fr 0.75fr;
+
+  gap: 100px;
+
+  margin-top: 70px;
+}
+
+
+/* =====================================================
+   SECTION LABEL
+===================================================== */
+
+.sectionLabel {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 7px 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  border-radius: 999px;
+
+  color: rgba(245, 245, 245, 0.75);
+
+  font-family: var(--font-body), sans-serif;
+
+  font-size: 0.65rem;
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+}
+
+.sectionLabel span {
+  width: 4px;
+  height: 4px;
+
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+
+  background: $color-accent;
+}
+
+
+/* =====================================================
+   INTRO HEADING
+===================================================== */
+
+.introHeading h2 {
+  max-width: 700px;
+
+  margin: 22px 0 0;
+
+  color: #f5f5f5;
+
+  font-family: var(--font-body), sans-serif;
+
+  font-size: clamp(2.5rem, 3.5vw, 4rem);
+
+  font-weight: 300;
+
+  line-height: 1.02;
+
+  letter-spacing: -0.035em;
+}
+
+
+/* =====================================================
+   INTRO COPY
+===================================================== */
+
+.introCopy {
+  align-self: end;
+
+  max-width: 390px;
+
+  padding-bottom: 4px;
+}
+
+.introCopy p {
+  margin: 0;
+
+  color: rgba(245, 245, 245, 0.55);
+
+  font-family: var(--font-body), sans-serif;
+
+  font-size: 0.92rem;
+
+  font-weight: 400;
+
+  line-height: 1.6;
+}
+
+
+/* =====================================================
+   EXPLORE LINK
+===================================================== */
+
+.exploreLink {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 22px;
+
+  color: $color-accent;
+
+  font-family: var(--font-body), sans-serif;
+
+  font-size: 0.92rem;
+
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition:
+    opacity 0.3s ease,
+    gap 0.3s ease;
+}
+
+.exploreLink span {
+  font-size: 1.5rem;
+
+  transition: transform 0.3s ease;
+}
+
+.exploreLink:hover {
+  opacity: 0.85;
+}
+
+.exploreLink:hover span {
+  transform: translateX(4px);
+}
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+.revealItem {
+  opacity: 0;
+
+  transform: translateY(18px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.revealHeading {
+  opacity: 0;
+
+  transform: translateY(35px);
+
+  transition:
+    opacity 0.9s ease 0.12s,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
+}
+
+.revealCopy {
+  opacity: 0;
+
+  transform: translateY(25px);
+
+  transition:
+    opacity 0.8s ease 0.25s,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+}
+
+.services.isVisible .revealItem,
+.services.isVisible .revealHeading,
+.services.isVisible .revealCopy {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   BENTO GRID
+===================================================== */
+
+.bentoGrid {
+  display: grid;
+
+  /*
+    Reference layout:
+
+    ┌──────────────┬──────────────────────────────┐
+    │              │                              │
+    │     01       │             02               │
+    │              │                              │
+    ├──────────────┼──────────────┬───────────────┤
+    │              │              │               │
+    │     03       │      04      │      05       │
+    │              │              │    VISUAL     │
+    └──────────────┴──────────────┴───────────────┘
+  */
+
+  grid-template-columns:
+    1.05fr
+    0.62fr
+    0.95fr;
+
+  grid-template-rows:
+    250px
+    255px;
+
+  grid-template-areas:
+    "card01 card02 card02"
+    "card03 card04 card05";
+
+  gap: 14px;
+
+  width: 100%;
+
+  margin-top: 65px;
+
+  margin-bottom: 110px;
+}
+
+
+/* =====================================================
+   BENTO CARD
+===================================================== */
+
+.bentoCard {
+  position: relative;
+
+  overflow: hidden;
+
+  min-width: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.72);
+
+  border-radius: 18px;
+
+  background: #000;
+
+  color: #fff;
+
+  opacity: 0;
+
+  transform: translateY(35px);
+
+  transition:
+    opacity 0.75s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease,
+    background 0.4s ease;
+}
+
+
+/* =====================================================
+   CARD POSITIONS
+===================================================== */
+
+.card01 {
+  grid-area: card01;
+}
+
+.card02 {
+  grid-area: card02;
+}
+
+.card03 {
+  grid-area: card03;
+
+  background: #f5f5f5;
+
+  color: #050505;
+
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.card04 {
+  grid-area: card04;
+}
+
+.card05 {
+  grid-area: card05;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+/* =====================================================
+   BENTO REVEAL
+===================================================== */
+
+.services.isVisible .bentoCard {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.services.isVisible .card01 {
+  transition-delay: 0.05s;
+}
+
+.services.isVisible .card02 {
+  transition-delay: 0.15s;
+}
+
+.services.isVisible .card03 {
+  transition-delay: 0.25s;
+}
+
+.services.isVisible .card04 {
+  transition-delay: 0.35s;
+}
+
+.services.isVisible .card05 {
+  transition-delay: 0.45s;
+}
+
+
+/* =====================================================
+   NUMBER
+===================================================== */
+
+.cardNumber {
+  position: absolute;
+
+  top: 13px;
+  left: 13px;
+
+  z-index: 3;
+
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #f5f5f5;
+
+  color: #050505;
+
+  font-family: var(--font-body), sans-serif;
+
+  font-size: 0.62rem;
+
+  font-weight: 600;
+
+  line-height: 1;
+}
+
+.card03 .cardNumber {
+  background: #050505;
+
+  color: #fff;
+}
+
+
+/* =====================================================
+   BENTO CONTENT
+===================================================== */
+
+.bentoContent {
+  position: absolute;
+
+  left: 18px;
+  right: 18px;
+  bottom: 20px;
+
+  z-index: 2;
+}
+
+.bentoContent h3 {
+  margin: 0;
+
+  color: inherit;
+
+  font-family: var(--font-body), sans-serif;
+
+  font-size: 1rem;
+
+  font-weight: 600;
+
+  line-height: 1.25;
+
+  letter-spacing: -0.01em;
+}
+
+.bentoContent p {
+  max-width: 390px;
+
+  margin: 7px 0 0;
+
+  color: rgba(245, 245, 245, 0.58);
+
+  font-family: var(--font-body), sans-serif;
+
+  font-size: 0.92rem;
+
+  font-weight: 400;
+
+  line-height: 1.45;
+}
+
+.card03 .bentoContent p {
+  color: rgba(5, 5, 5, 0.62);
+}
+
+
+/* =====================================================
+   VISUAL CARD
+===================================================== */
+
+.visualShape {
+  position: absolute;
+
+  width: 190px;
+  height: 230px;
+
+  right: 40px;
+  bottom: -35px;
+
+  border-radius: 50% 50% 20% 20%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8d35ff 0%,
+      #304cff 45%,
+      #00b7ff 100%
+    );
+
+  transform: rotate(-12deg);
+
+  filter: saturate(1.15);
+
+  box-shadow:
+    0 0 60px rgba(77, 70, 255, 0.3);
+
+  transition:
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.visualShape::before {
+  content: "";
+
+  position: absolute;
+
+  width: 120px;
+  height: 120px;
+
+  top: -45px;
+  left: 10px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff55d6,
+      #7b3cff 60%,
+      #00c6ff
+    );
+}
+
+.visualShape::after {
+  content: "";
+
+  position: absolute;
+
+  width: 32px;
+  height: 32px;
+
+  top: 25px;
+  left: 50px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  filter: blur(7px);
+
+  box-shadow:
+    0 0 25px rgba(255, 255, 255, 0.75);
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.bentoCard:hover {
+  border-color: $color-accent;
+
+  transform: translateY(-4px);
+}
+
+.bentoCard:hover .visualShape {
+  transform:
+    rotate(-8deg)
+    scale(1.06)
+    translateY(-5px);
+}
+
+
+/* =====================================================
+   LARGE DESKTOP
+===================================================== */
+
+@media (max-width: 1400px) {
+
+  .services {
+    padding-left: $padding-tablet;
+    padding-right: $padding-tablet;
+  }
+
+  .intro {
+    gap: 70px;
+  }
+
+  .brand {
+    min-width: 170px;
+  }
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .services {
+    padding: 70px 48px 100px;
+  }
+
+  .brand {
+    min-width: 150px;
+  }
+
+  .intro {
+    grid-template-columns: 1fr 0.8fr;
+
+    gap: 50px;
+
+    margin-top: 70px;
+  }
+
+  .introHeading h2 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+  }
+
+  .bentoGrid {
+    grid-template-columns:
+      1fr
+      1fr;
+
+    grid-template-rows:
+      250px
+      220px
+      220px;
+
+    grid-template-areas:
+      "card01 card02"
+      "card03 card03"
+      "card04 card05";
+
+    gap: 14px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .services {
+    width: 100%;
+    max-width: 100%;
+
+    box-sizing: border-box;
+
+    padding-left: $padding-mobile;
+    padding-right: $padding-mobile;
+
+    overflow: hidden;
+  }
+
+
+  /* -----------------------------
+     TRUSTED BRANDS
+  ----------------------------- */
+
+  .brands {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .brandsHeader {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .brandMarquee {
+    width: 100%;
+    max-width: 100%;
+
+    overflow: hidden;
+  }
+
+  .brandTrack {
+    width: max-content;
+    max-width: none;
+  }
+
+  .brandSet {
+    flex-shrink: 0;
+  }
+
+  .brand {
+    flex-shrink: 0;
+  }
+
+
+  /* -----------------------------
+     INTRO
+  ----------------------------- */
+
+  .intro {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    gap: 0;
+
+    margin-top: 65px;
+  }
+
+  .introHeading {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .introHeading h2 {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  .introCopy {
+    width: 100%;
+    max-width: 340px;
+    min-width: 0;
+
+    margin-top: 30px;
+
+    padding-bottom: 0;
+
+    align-self: flex-start;
+  }
+
+  .introCopy p {
+    max-width: 100%;
+
+    overflow-wrap: break-word;
+  }
+
+
+  /* -----------------------------
+     BENTO
+  ----------------------------- */
+
+  .bentoGrid {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    grid-template-rows: auto;
+
+    grid-template-areas:
+      "card01"
+      "card02"
+      "card03"
+      "card04"
+      "card05";
+
+    gap: 12px;
+
+    width: 100%;
+
+    margin-top: 45px;
+
+    margin-bottom: 70px;
+  }
+
+  .card01,
+  .card02,
+  .card03,
+  .card04 {
+    min-height: 220px;
+  }
+
+  .card05 {
+    min-height: 260px;
+  }
+
+
+  /* -----------------------------
+     VISUAL
+  ----------------------------- */
+
+  .visualShape {
+    right: 50%;
+
+    transform:
+      translateX(50%)
+      rotate(-12deg);
+  }
+
+  .bentoCard:hover .visualShape {
+    transform:
+      translateX(50%)
+      rotate(-8deg)
+      scale(1.04);
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .services {
+    width: 100%;
+    max-width: 100%;
+
+    box-sizing: border-box;
+
+    padding-left: $padding-mobile;
+    padding-right: $padding-mobile;
+  }
+
+  .intro {
+    width: 100%;
+    max-width: 100%;
+
+    margin-top: 55px;
+  }
+
+  .introHeading h2 {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .introCopy {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .bentoGrid {
+    width: 100%;
+    max-width: 100%;
+
+    margin-top: 40px;
+    margin-bottom: 70px;
+  }
+
+  .bentoCard {
+    border-radius: 16px;
+  }
+
+  .card01,
+  .card02,
+  .card03,
+  .card04 {
+    min-height: 210px;
+  }
+
+  .card05 {
+    min-height: 250px;
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .brandTrack {
+    animation: none;
+  }
+
+  .revealItem,
+  .revealHeading,
+  .revealCopy,
+  .bentoCard {
+    opacity: 1;
+
+    transform: none;
+
+    transition: none;
+  }
+
+}

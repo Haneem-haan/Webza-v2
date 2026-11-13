@@ -1,0 +1,52 @@
+// =====================================================
+// WEBZA — DESIGN TOKENS
+// =====================================================
+
+// Colors
+$color-bg: #050505;
+$color-bg-soft: #0a0a0a;
+
+$color-text: #f5f5f5;
+$color-text-soft: #d0d0d0;
+$color-text-muted: #858585;
+
+$color-accent: #ffd21f;
+$color-accent-hover: #ffe04d;
+
+$color-border: rgba(255, 255, 255, 0.12);
+$color-border-soft: rgba(255, 255, 255, 0.07);
+
+// Layout
+$container-max: 1440px;
+
+$padding-desktop: 56px;
+$padding-tablet: 32px;
+$padding-mobile: 20px;
+
+// Section spacing
+$section-spacing-desktop: 160px;
+$section-spacing-tablet: 120px;
+$section-spacing-mobile: 88px;
+
+// Border radius
+$radius-small: 8px;
+$radius-medium: 16px;
+$radius-large: 24px;
+$radius-pill: 999px;
+
+// Breakpoints
+$breakpoint-mobile: 575px;
+$breakpoint-tablet: 768px;
+$breakpoint-laptop: 1024px;
+$breakpoint-desktop: 1440px;
+
+// Transitions
+$transition-fast: 180ms ease;
+$transition-medium: 350ms ease;
+$transition-slow: 700ms cubic-bezier(0.22, 1, 0.36, 1);
+
+// Z-index
+$z-base: 1;
+$z-header: 100;
+$z-menu: 200;
+$z-modal: 300;

@@ -1,0 +1,317 @@
+@use "../../../styles/variables" as *;
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+  position: relative;
+  z-index: $z-header;
+
+  width: 100%;
+  padding-top: 22px;
+}
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.container {
+  width: 100%;
+  max-width: $container-max;
+
+  margin: 0 auto;
+  padding: 0 $padding-desktop;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+  justify-self: start;
+
+  color: $color-text;
+
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.06em;
+
+  transition: opacity $transition-fast;
+
+  span {
+    color: $color-accent;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.navLink {
+  position: relative;
+
+  padding: 9px 0;
+
+  color: rgba(245, 245, 245, 0.7);
+
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+
+  transition: color $transition-fast;
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: $color-accent;
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    transition: transform $transition-medium;
+  }
+
+  &:hover {
+    color: $color-text;
+  }
+
+  &.active {
+    color: $color-text;
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.actions {
+  justify-self: end;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* =========================================
+   LET'S TALK
+========================================= */
+
+.talkButton {
+  min-height: 44px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 0 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+
+  color: $color-text;
+
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1;
+
+  transition:
+    border-color $transition-medium,
+    background $transition-medium,
+    transform $transition-medium;
+
+  span {
+    color: $color-accent;
+    font-size: 1.5rem;
+
+    transition: transform $transition-medium;
+  }
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.04);
+
+    transform: translateY(-1px);
+
+    span {
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+/* =========================================
+   CIRCLE BUTTON
+========================================= */
+
+.circleButton {
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transition:
+    border-color $transition-medium,
+    background $transition-medium;
+
+  span {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: $color-accent;
+  }
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+.menuButton {
+  display: none;
+
+  width: 40px;
+  height: 40px;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+
+  border: 0;
+  border-radius: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  span {
+    display: block;
+
+    width: 22px;
+    height: 1px;
+
+    background: $color-text;
+
+    transition:
+      transform $transition-medium,
+      opacity $transition-medium;
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 $padding-tablet;
+  }
+
+  .navigation {
+    gap: 24px;
+  }
+
+  .navLink {
+    font-size: 0.8125rem;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .header {
+    padding-top: 18px;
+  }
+
+  .container {
+    padding: 0 $padding-mobile;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navigation,
+  .talkButton,
+  .circleButton {
+    display: none;
+  }
+
+  .actions {
+    margin-left: auto;
+  }
+
+  .menuButton {
+    display: flex;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+  }
+}
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .menuButton {
+    width: 36px;
+    height: 36px;
+
+    span {
+      width: 20px;
+    }
+  }
+}
