@@ -1,0 +1,99 @@
+@use "../../styles/variables" as *;
+
+/* =====================================================
+   CHECK GRID SECTION (ABOUT + PROCESS UNIFIED CANVAS)
+===================================================== */
+
+.checkGridSection {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  isolation: isolate;
+
+  --spotlight-opacity: 0;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+}
+
+/* =====================================================
+   BASE CHECK GRID (CONTINUOUS ACROSS WHOLE SECTION)
+===================================================== */
+
+.baseGrid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.045) 1px,
+      transparent 1px
+    );
+  background-size: 80px 80px;
+  background-position: 0 0;
+}
+
+/* =====================================================
+   GOLDEN ILLUMINATED CHECK OVERLAY (SPOTLIGHT MASK)
+   ALIGNED PIXEL-FOR-PIXEL WITH THE BASE CHECK GRID
+===================================================== */
+
+.goldenGridOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(250, 204, 21, 0.28) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(250, 204, 21, 0.28) 1px,
+      transparent 1px
+    );
+  background-size: 80px 80px;
+  background-position: 0 0;
+
+  opacity: var(--spotlight-opacity, 0);
+
+  mask-image: radial-gradient(
+    360px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    black 0%,
+    rgba(0, 0, 0, 0.45) 40%,
+    transparent 76%
+  );
+  -webkit-mask-image: radial-gradient(
+    360px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    black 0%,
+    rgba(0, 0, 0, 0.45) 40%,
+    transparent 76%
+  );
+
+  transition: opacity 0.35s ease;
+}
+
+/* =====================================================
+   CONTENT WRAPPER
+===================================================== */
+
+.content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .goldenGridOverlay {
+    display: none;
+  }
+}

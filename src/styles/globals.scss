@@ -78,6 +78,19 @@ html {
   color: $color-text;
 
   scroll-behavior: auto;
+  scroll-snap-type: y proximity;
+}
+
+#main-content > section,
+#main-content > footer,
+#main-content #about,
+#main-content #process {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+#main-content > #home {
+  scroll-snap-align: none;
 }
 
 body {
@@ -290,6 +303,24 @@ select {
   }
 }
 
+@media (max-width: 767px) {
+  html {
+    scroll-snap-type: none;
+  }
+
+  .page {
+    min-height: 0;
+  }
+
+  #main-content > section,
+  #main-content > footer,
+  #main-content #about,
+  #main-content #process {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+}
+
 // =====================================================
 // REDUCED MOTION
 // =====================================================
@@ -306,37 +337,4 @@ select {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-.aboutProcess {
-  position: relative;
-  overflow: hidden;
-  background: #000;
-}
-
-.aboutProcess::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  z-index: 0;
-  pointer-events: none;
-
-  background-image:
-    linear-gradient(
-      rgba(255, 255, 255, 0.075) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.075) 1px,
-      transparent 1px
-    );
-
-  background-size: 80px 80px;
-}
-
-.aboutProcess > * {
-  position: relative;
-  z-index: 1;
 }

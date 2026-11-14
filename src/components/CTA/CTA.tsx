@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useContactModal } from "@/components/layout/ContactModalProvider";
 import styles from "./CTA.module.scss";
 
 export default function CTA() {
+  const openContactModal = useContactModal();
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -64,12 +65,16 @@ export default function CTA() {
               amazing together.
             </p>
 
-            <Link href="#contact" className={styles.button}>
+            <button
+              type="button"
+              className={styles.button}
+              onClick={openContactModal}
+            >
               <span>Start a Project</span>
               <span className={styles.arrow} aria-hidden="true">
                 ↗
               </span>
-            </Link>
+            </button>
           </div>
         </div>
       </div>

@@ -1,0 +1,256 @@
+.dialog {
+  position: fixed;
+  inset: 0;
+  place-items: center;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 12px;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  color: #f5f5f5;
+  opacity: 0;
+  transition: opacity 220ms ease;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(0);
+    transition:
+      background 220ms ease,
+      backdrop-filter 220ms ease;
+  }
+}
+
+.dialog[open] {
+  display: grid;
+}
+
+.visible {
+  opacity: 1;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.panel {
+  position: relative;
+  width: min(100%, 520px);
+  max-height: 90dvh;
+  overflow: hidden;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 22px;
+  background-color: #0d0d0d;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 42px 42px;
+  box-shadow: 0 24px 100px rgba(0, 0, 0, 0.6);
+  transform: translateY(12px) scale(0.97);
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.visible .panel {
+  transform: translateY(0) scale(1);
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  color: #f5f5f5;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+
+  span {
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  &:hover {
+    border-color: #facc15;
+    color: #facc15;
+    transform: rotate(90deg);
+  }
+}
+
+.eyebrow {
+  color: #facc15;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.panel h2 {
+  max-width: 380px;
+  margin: 10px 0 0;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+
+.intro {
+  margin: 10px 0 0;
+  color: rgba(245, 245, 245, 0.58);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.form {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+
+  label {
+    display: grid;
+    gap: 6px;
+    color: rgba(245, 245, 245, 0.82);
+    font-size: 0.78rem;
+  }
+
+  input {
+    width: 100%;
+    min-height: 42px;
+    padding: 0 14px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 9px;
+    outline: none;
+    background: rgba(0, 0, 0, 0.42);
+    color: #f5f5f5;
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease;
+
+    &:focus {
+      border-color: #facc15;
+      box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.12);
+    }
+  }
+}
+
+.submitButton {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 20px;
+  border: 1px solid #facc15;
+  border-radius: 999px;
+  background: #facc15;
+  color: #080808;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    background: #ffe15a;
+    box-shadow: 0 8px 26px rgba(250, 204, 21, 0.18);
+  }
+}
+
+.formNote {
+  margin: -7px 0 0;
+  color: rgba(245, 245, 245, 0.4);
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.confirmation {
+  display: grid;
+  justify-items: start;
+
+  p {
+    margin: 15px 0 26px;
+    color: rgba(245, 245, 245, 0.62);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  a {
+    color: #facc15;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.confirmationMark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(250, 204, 21, 0.4);
+  border-radius: 50%;
+  color: #facc15;
+}
+
+@media (max-width: 480px) {
+  .dialog {
+    padding: 10px;
+  }
+
+  .panel {
+    padding: 22px;
+    border-radius: 17px;
+  }
+}
+
+@media (max-height: 700px) {
+  .panel {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .panel h2 {
+    font-size: clamp(1.65rem, 4vw, 2rem);
+  }
+
+  .intro {
+    margin-top: 7px;
+  }
+
+  .form {
+    gap: 9px;
+    margin-top: 14px;
+
+    input {
+      min-height: 38px;
+    }
+  }
+
+  .submitButton {
+    min-height: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog,
+  .dialog::backdrop,
+  .panel,
+  .closeButton,
+  .form input,
+  .submitButton {
+    transition: none;
+  }
+}

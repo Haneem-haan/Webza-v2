@@ -7,6 +7,9 @@
 .process {
   position: relative;
   width: 100%;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
   padding: 20px $padding-desktop 130px;
   background: transparent;
   color: $color-text;
@@ -279,6 +282,15 @@
   transform: translateY(0);
 }
 
+.step:hover .stepContent {
+  opacity: 1;
+  transform: translateY(-4px);
+
+  .number {
+    color: $color-accent;
+  }
+}
+
 /* =====================================================
    NUMBER
 ===================================================== */
@@ -380,104 +392,72 @@
    MOBILE
 ===================================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .process {
-    padding: 80px $padding-mobile 90px;
+    min-height: 0;
+    align-items: flex-start;
+    padding: 48px $padding-mobile 52px;
   }
 
   .heading {
-    font-size: clamp(2.35rem, 9vw, 3.3rem);
+    margin-top: 16px;
+    font-size: clamp(1.95rem, 8vw, 2.7rem);
+    line-height: 1.06;
   }
 
   .timeline {
-    display: flex;
-    flex-direction: column;
-
-    gap: 42px;
-
-    margin-top: 60px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 28px;
   }
 
   .step {
     text-align: left;
-
-    padding-left: 35px;
+    padding: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.35);
   }
 
   .timelineTop {
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 9px;
+    position: relative;
+    width: auto;
     height: 9px;
-
-    display: block;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
   }
 
   .dot {
-    position: absolute;
-
-    left: 0;
-    top: 0;
+    position: relative;
+    left: auto;
+    top: auto;
   }
-
-  /* Vertical connector */
 
   .connector {
-    left: 4px;
-    right: auto;
-
-    top: 9px;
-    bottom: -42px;
-
-    width: 1px;
-    height: auto;
-
-    transform: none;
-  }
-
-  .connector span {
-    transform: scaleY(0);
-
-    transform-origin: top center;
-  }
-
-  .connectorActive span {
-    transform: scaleY(1);
-  }
-
-  .step:last-child .connector {
     display: none;
   }
 
-  /* Mobile content */
-
   .stepContent {
     display: block;
-
     padding: 0;
-
     text-align: left;
   }
 
   .number {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   .stepContent h3 {
-    margin-top: 9px;
-
-    font-size: 0.78rem;
+    margin-top: 6px;
+    font-size: 0.8rem;
   }
 
   .stepContent p {
-    max-width: 280px;
-
-    margin-left: 0;
-
-    font-size: 0.66rem;
+    max-width: none;
+    margin: 6px 0 0;
+    font-size: 0.68rem;
+    line-height: 1.45;
   }
 }
 
@@ -487,7 +467,11 @@
 
 @media (max-width: 480px) {
   .timeline {
-    gap: 38px;
+    gap: 8px;
+  }
+
+  .step {
+    padding: 11px;
   }
 }
 

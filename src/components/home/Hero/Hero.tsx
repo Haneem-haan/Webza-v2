@@ -1,42 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useContactModal } from "@/components/layout/ContactModalProvider";
 import Link from "next/link";
 import styles from "./Hero.module.scss";
 
 export default function Hero() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    // Respect user's motion preferences
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReducedMotion) {
-      video.pause();
-      requestAnimationFrame(() => {
-        setIsPlaying(false);
-      });
-    }
-  }, []);
-
-  const toggleVideo = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (isPlaying) {
-      video.pause();
-      setIsPlaying(false);
-    } else {
-      video.play().catch(() => {});
-      setIsPlaying(true);
-    }
-  };
+  const openContactModal = useContactModal();
 
   return (
     <section id="home" className={styles.hero} aria-labelledby="hero-title">
@@ -72,15 +41,16 @@ export default function Hero() {
 
           {/* CTA */}
           <div className={styles.actions}>
-            <Link
-              href="#contact"
+            <button
+              type="button"
               className={`${styles.button} ${styles.primary}`}
+              onClick={openContactModal}
             >
               <span>Start a Project</span>
               <span className={styles.arrow} aria-hidden="true">
                 ↗
               </span>
-            </Link>
+            </button>
 
             <Link
               href="#work"
@@ -99,7 +69,6 @@ export default function Hero() {
         ================================= */}
         <div className={styles.visual}>
           <video
-            ref={videoRef}
             className={styles.video}
             src="/videos/hero.mp4"
             autoPlay
@@ -109,21 +78,6 @@ export default function Hero() {
             preload="metadata"
             aria-label="Webza showcase animation"
           />
-
-          {/* Accessible Play/Pause Toggle */}
-          <button
-            type="button"
-            className={styles.videoToggle}
-            onClick={toggleVideo}
-            aria-label={
-              isPlaying ? "Pause background video" : "Play background video"
-            }
-          >
-            <span>{isPlaying ? "⏸" : "▶"}</span>
-            <span className={styles.videoToggleText}>
-              {isPlaying ? "Pause" : "Play"}
-            </span>
-          </button>
         </div>
 
         {/* ================================

@@ -53,7 +53,7 @@
 }
 
 @mixin mobile {
-  @media (max-width: $breakpoint-tablet) {
+  @media (max-width: 767px) {
     @content;
   }
 }

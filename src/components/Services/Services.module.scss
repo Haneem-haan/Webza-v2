@@ -7,6 +7,10 @@
 .services {
   position: relative;
   width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 35px $padding-desktop 20px;
 
   background: #000;
@@ -67,7 +71,7 @@
   width: 100%;
   overflow: hidden;
 
-  padding: 28px 0;
+  padding: 20px 0;
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
@@ -189,7 +193,7 @@
 
   gap: 100px;
 
-  margin-top: 70px;
+  margin-top: 42px;
 }
 
 
@@ -397,8 +401,8 @@
     0.95fr;
 
   grid-template-rows:
-    250px
-    255px;
+    180px
+    180px;
 
   grid-template-areas:
     "card01 card02 card02"
@@ -408,9 +412,8 @@
 
   width: 100%;
 
-  margin-top: 65px;
-
-  margin-bottom: 110px;
+  margin-top: 38px;
+  margin-bottom: 0;
 }
 
 
@@ -728,7 +731,7 @@
    TABLET
 ===================================================== */
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
 
   .services {
     padding: 70px 48px 100px;
@@ -775,16 +778,16 @@
    MOBILE
 ===================================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 
   .services {
     width: 100%;
     max-width: 100%;
+    min-height: 0;
 
     box-sizing: border-box;
 
-    padding-left: $padding-mobile;
-    padding-right: $padding-mobile;
+    padding: 44px $padding-mobile 40px;
 
     overflow: hidden;
   }
@@ -841,7 +844,7 @@
 
     gap: 0;
 
-    margin-top: 65px;
+    margin-top: 32px;
   }
 
   .introHeading {
@@ -855,6 +858,10 @@
     max-width: 100%;
     min-width: 0;
 
+    margin-top: 14px;
+    font-size: clamp(1.9rem, 8vw, 2.7rem);
+    line-height: 1.05;
+
     overflow-wrap: break-word;
     word-wrap: break-word;
   }
@@ -864,7 +871,7 @@
     max-width: 340px;
     min-width: 0;
 
-    margin-top: 30px;
+    margin-top: 16px;
 
     padding-bottom: 0;
 
@@ -877,6 +884,9 @@
     overflow-wrap: break-word;
   }
 
+  .exploreLink {
+    margin-top: 14px;
+  }
 
   /* -----------------------------
      BENTO
@@ -885,35 +895,49 @@
   .bentoGrid {
     display: grid;
 
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     grid-template-rows: auto;
 
     grid-template-areas:
-      "card01"
-      "card02"
-      "card03"
-      "card04"
-      "card05";
+      "card01 card02"
+      "card03 card03"
+      "card04 card05";
 
-    gap: 12px;
+    gap: 10px;
 
     width: 100%;
 
-    margin-top: 45px;
+    margin-top: 24px;
 
-    margin-bottom: 70px;
+    margin-bottom: 0;
   }
 
   .card01,
   .card02,
-  .card03,
-  .card04 {
-    min-height: 220px;
+  .card04,
+  .card05 {
+    min-height: 180px;
   }
 
-  .card05 {
-    min-height: 260px;
+  .card03 {
+    min-height: 160px;
+  }
+
+  .bentoContent {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .bentoContent h3 {
+    font-size: 0.78rem;
+  }
+
+  .bentoContent p {
+    margin-top: 5px;
+    font-size: 0.68rem;
+    line-height: 1.35;
   }
 
 
@@ -959,7 +983,7 @@
     width: 100%;
     max-width: 100%;
 
-    margin-top: 55px;
+    margin-top: 28px;
   }
 
   .introHeading h2 {
@@ -976,8 +1000,8 @@
     width: 100%;
     max-width: 100%;
 
-    margin-top: 40px;
-    margin-bottom: 70px;
+    margin-top: 22px;
+    margin-bottom: 0;
   }
 
   .bentoCard {
@@ -986,13 +1010,13 @@
 
   .card01,
   .card02,
-  .card03,
-  .card04 {
-    min-height: 210px;
+  .card04,
+  .card05 {
+    min-height: 165px;
   }
 
-  .card05 {
-    min-height: 250px;
+  .card03 {
+    min-height: 150px;
   }
 
 }

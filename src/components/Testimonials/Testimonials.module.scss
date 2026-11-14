@@ -7,6 +7,10 @@
 .testimonials {
   position: relative;
   width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   padding: 20px $padding-desktop 50px;
 
@@ -299,6 +303,8 @@
 }
 
 .progress button {
+  position: relative;
+  overflow: hidden;
   width: 22px;
   height: 2px;
 
@@ -317,8 +323,29 @@
 
 .progress button.progressActive {
   width: 45px;
+  background: rgba(255, 255, 255, 0.2);
+}
 
+.progressFill {
+  position: absolute;
+  inset: 0;
   background: $color-accent;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.isVisible .progressActive .progressFill {
+  animation: progressFill 5s linear forwards;
+}
+
+.isPaused .progressActive .progressFill {
+  animation-play-state: paused;
+}
+
+@keyframes progressFill {
+  to {
+    transform: scaleX(1);
+  }
 }
 
 /* =====================================================
@@ -397,23 +424,25 @@
    MOBILE
 ===================================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .testimonials {
-    padding: 80px $padding-mobile 90px;
+    min-height: 0;
+    padding: 48px $padding-mobile 52px;
   }
 
   .header {
     align-items: flex-start;
     flex-direction: column;
 
-    gap: 30px;
+    gap: 16px;
 
-    margin-top: 24px;
-    margin-bottom: 40px;
+    margin-top: 16px;
+    margin-bottom: 24px;
   }
 
   .header h2 {
-    font-size: clamp(2.35rem, 9vw, 3.2rem);
+    font-size: clamp(1.95rem, 8vw, 2.7rem);
+    line-height: 1.06;
   }
 
   .controls {
@@ -433,17 +462,32 @@
     width: 100%;
     flex: 0 0 100%;
 
-    min-height: 280px;
+    min-height: 0;
 
-    padding: 30px 25px;
+    padding: 24px 20px;
   }
 
   .quote {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
+    line-height: 1.55;
   }
 
   .quoteMark {
-    font-size: 3rem;
+    margin-bottom: 15px;
+    font-size: 2.7rem;
+  }
+
+  .client {
+    margin-top: 20px;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .progress {
+    margin-top: 18px;
   }
 }
 
@@ -453,21 +497,15 @@
 
 @media (max-width: 480px) {
   .testimonials {
-    padding-top: 65px;
+    padding-top: 42px;
   }
 
   .header h2 {
-    font-size: 2.2rem;
+    font-size: 2.05rem;
   }
 
   .card {
-    min-height: 270px;
-
-    padding: 27px 22px;
-  }
-
-  .client {
-    margin-top: 28px;
+    padding: 22px 18px;
   }
 }
 
@@ -488,5 +526,10 @@
 
   .track {
     transition: none;
+  }
+
+  .isVisible .progressActive .progressFill {
+    animation: none;
+    transform: scaleX(1);
   }
 }

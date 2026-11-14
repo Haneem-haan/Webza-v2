@@ -1,20 +1,36 @@
 @use "../../styles/variables" as *;
 
 /* =====================================================
-   WEBZA — ABOUT
+   WEBZA — ABOUT SECTION
 ===================================================== */
 
 .about {
   position: relative;
-
   width: 100%;
-
-  padding: 20px $padding-desktop 120px;
-
-  background: #000;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 40px $padding-desktop 130px;
+  background: transparent;
   color: $color-text;
-
   overflow: hidden;
+}
+
+.ambientGlow {
+  position: absolute;
+  top: 15%;
+  right: -5%;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 210, 31, 0.07) 0%,
+    transparent 70%
+  );
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* =====================================================
@@ -22,63 +38,67 @@
 ===================================================== */
 
 .container {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: $container-max;
-
   margin: 0 auto;
 }
 
 /* =====================================================
-   SECTION LABEL
+   SECTION LABEL / BADGE
 ===================================================== */
 
 .sectionLabel {
   display: inline-flex;
   align-items: center;
-
-  gap: 7px;
-
-  padding: 6px 10px;
-
+  gap: 8px;
+  padding: 6px 12px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
-
-  color: rgba(245, 245, 245, 0.75);
-
-  font-family: "Epilogue", sans-serif;
-
-  font-size: 0.65rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  color: rgba(245, 245, 245, 0.85);
+  font-family: var(--font-epilogue), "Epilogue", sans-serif;
+  font-size: 0.68rem;
   font-weight: 500;
-
   line-height: 1;
-  letter-spacing: 0.06em;
-
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.sectionLabel span {
-  width: 4px;
-  height: 4px;
-
+.pulseDot {
+  width: 5px;
+  height: 5px;
   flex: 0 0 auto;
-
   border-radius: 50%;
-
   background: $color-accent;
+  box-shadow: 0 0 8px $color-accent;
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.4;
+  }
 }
 
 /* =====================================================
-   CONTENT
+   CONTENT GRID
 ===================================================== */
 
 .content {
   display: grid;
-
-  grid-template-columns: 1.05fr 0.8fr;
-
-  gap: 120px;
-
-  margin-top: 30px;
+  grid-template-columns: 1.05fr 0.85fr;
+  gap: 90px;
+  margin-top: 36px;
+  align-items: start;
 }
 
 /* =====================================================
@@ -91,50 +111,86 @@
 
 .headingWrap h2 {
   margin: 0;
-
   color: #f5f5f5;
-
-  font-family: "Epilogue", sans-serif;
-
-  font-size: clamp(2.8rem, 4.1vw, 5rem);
-
+  font-family: var(--font-epilogue), "Epilogue", sans-serif;
+  font-size: clamp(2.8rem, 4.1vw, 4.8rem);
   font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
 
-  line-height: 1.02;
+.highlightWord {
+  color: #ffffff;
+  position: relative;
+  display: inline-block;
+  font-weight: 400;
+  transition: color 0.3s ease;
 
-  letter-spacing: -0.045em;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, $color-accent, transparent);
+    opacity: 0.6;
+    transform: scaleX(0.95);
+    transform-origin: left;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
 }
 
 /* =====================================================
-   ABOUT LINK
+   ABOUT LINK (PILL BUTTON)
 ===================================================== */
 
 .aboutLink {
   display: inline-flex;
   align-items: center;
-
-  gap: 10px;
-
-  margin-top: 35px;
-
+  gap: 12px;
+  margin-top: 40px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: rgba(255, 210, 31, 0.08);
+  border: 1px solid rgba(255, 210, 31, 0.28);
   color: $color-accent;
-
-  font-family: "Epilogue", sans-serif;
-
+  font-family: var(--font-epilogue), "Epilogue", sans-serif;
   font-size: 0.92rem;
   font-weight: 500;
-
+  letter-spacing: 0.01em;
   text-decoration: none;
+  backdrop-filter: blur(6px);
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    background: $color-accent;
+    color: #050505;
+    border-color: $color-accent;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -4px rgba(255, 210, 31, 0.35);
+
+    .linkArrow {
+      transform: translateX(5px);
+    }
+  }
 }
 
-.aboutLink span {
-  font-size: 0.95rem;
-
+.linkArrow {
+  font-size: 1rem;
   transition: transform 0.3s ease;
-}
-
-.aboutLink:hover span {
-  transform: translate(4px, 0);
 }
 
 /* =====================================================
@@ -142,9 +198,11 @@
 ===================================================== */
 
 .rightColumn {
-  align-self: end;
-
-  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 480px;
+  padding-top: 8px;
 }
 
 /* =====================================================
@@ -153,87 +211,133 @@
 
 .description {
   margin: 0;
-
-  color: rgba(245, 245, 245, 0.55);
-
-  font-family: "Epilogue", sans-serif;
-
-  font-size: 0.92rem;
-
+  color: rgba(245, 245, 245, 0.65);
+  font-family: var(--font-epilogue), "Epilogue", sans-serif;
+  font-size: 0.96rem;
   font-weight: 400;
-
-  line-height: 1.7;
+  line-height: 1.75;
+  letter-spacing: -0.01em;
 }
 
 /* =====================================================
-   STATS
+   STATS LIST (LOCALIZED HOVER BOUNDARY)
 ===================================================== */
 
 .stats {
-  display: flex;
-
-  gap: 50px;
-
-  margin-top: 55px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 48px;
 }
 
-.stat {
+.statCard {
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  min-height: 140px;
+  padding: 20px 18px 18px;
+  border-radius: 16px;
+  background: rgba(8, 8, 8, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  cursor: default;
+  overflow: hidden;
 
-  min-width: 75px;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+    background: rgba(14, 14, 14, 0.9);
+    border-color: rgba(250, 204, 21, 0.65);
+    .statCorner {
+      border-color: #facc15;
+    }
+
+    .statTag {
+      color: #ffffff;
+    }
+
+    .statValue {
+      color: #ffffff;
+    }
+  }
 }
 
-.stat strong {
+.statCorner {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  width: 7px;
+  height: 7px;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.25);
+  transition: border-color 0.3s ease;
+}
+
+.statTag {
+  font-family: var(--font-epilogue), "Epilogue", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 210, 31, 0.85);
+  margin-bottom: 6px;
+  transition: color 0.3s ease;
+}
+
+.statValue {
   color: #f5f5f5;
-
-  font-family: "Epilogue", sans-serif;
-
-  font-size: 2.1rem;
-
+  font-family: var(--font-epilogue), "Epilogue", sans-serif;
+  font-size: clamp(2rem, 2.5vw, 2.5rem);
   font-weight: 300;
-
   line-height: 1;
-
-  letter-spacing: -0.045em;
+  letter-spacing: -0.04em;
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease;
 }
 
-.stat div {
+.accentPlus {
+  color: $color-accent;
+  margin-left: 2px;
+  font-weight: 400;
+}
+
+.statInfo {
   display: flex;
   flex-direction: column;
-
   margin-top: 10px;
 }
 
-.stat span {
+.statLabel {
   color: #f5f5f5;
-
-  font-family: "Epilogue", sans-serif;
-
-  font-size: .92rem;
-
+  font-family: var(--font-epilogue), "Epilogue", sans-serif;
+  font-size: 0.86rem;
   font-weight: 500;
+  line-height: 1.2;
 }
 
-.stat small {
-  margin-top: 3px;
-
+.statSublabel {
+  margin-top: 2px;
   color: rgba(245, 245, 245, 0.45);
-
-  font-family: "Epilogue", sans-serif;
-
-  font-size: .72rem;
+  font-family: var(--font-epilogue), "Epilogue", sans-serif;
+  font-size: 0.68rem;
+  line-height: 1.2;
 }
 
 /* =====================================================
-   REVEAL
+   SCROLL REVEAL ANIMATION
 ===================================================== */
 
 .reveal {
   opacity: 0;
-
   transform: translateY(30px);
-
   transition:
     opacity 0.8s ease,
     transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
@@ -241,7 +345,6 @@
 
 .isVisible .reveal {
   opacity: 1;
-
   transform: translateY(0);
 }
 
@@ -250,127 +353,120 @@
 }
 
 .isVisible .rightColumn {
-  transition-delay: 220ms;
+  transition-delay: 200ms;
 }
 
 /* =====================================================
-   LARGE DESKTOP
+   RESPONSIVENESS
 ===================================================== */
 
-@media (max-width: 1400px) {
-  .about {
-    padding-left: $padding-tablet;
-    padding-right: $padding-tablet;
-  }
-
+@media (max-width: 1200px) {
   .content {
-    gap: 90px;
-  }
-}
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 1024px) {
-  .about {
-    padding: 90px 48px 100px;
-  }
-
-  .content {
-    grid-template-columns: 1fr 0.75fr;
-
     gap: 60px;
   }
 
-  .headingWrap h2 {
-    font-size: clamp(2.5rem, 4.5vw, 4rem);
+  .stats {
+    gap: 12px;
   }
 
-  .stats {
-    gap: 30px;
+  .statCard {
+    padding: 16px 14px 14px;
   }
 }
 
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .about {
-    padding: 80px $padding-mobile 90px;
+    min-height: 100svh;
+    padding: 70px $padding-tablet 100px;
   }
 
   .content {
-    display: block;
-
-    margin-top: 25px;
-  }
-
-  .headingWrap {
-    max-width: 100%;
-  }
-
-  .headingWrap h2 {
-    font-size: clamp(2.35rem, 9vw, 3.3rem);
-
-    line-height: 1.02;
-  }
-
-  .aboutLink {
-    margin-top: 28px;
+    grid-template-columns: 1fr;
+    gap: 48px;
   }
 
   .rightColumn {
     max-width: 100%;
-
-    margin-top: 55px;
-  }
-
-  .description {
-    font-size: 0.74rem;
   }
 
   .stats {
-    gap: 35px;
-
-    margin-top: 40px;
-  }
-
-  .stat strong {
-    font-size: 1.8rem;
+    max-width: 600px;
   }
 }
 
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
-
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .about {
-    padding-top: 65px;
+    min-height: 0;
+    align-items: flex-start;
+    padding: 48px $padding-mobile 52px;
   }
 
   .headingWrap h2 {
-    font-size: 2.25rem;
+    font-size: clamp(2rem, 7.5vw, 2.8rem);
+    line-height: 1.06;
+  }
+
+  .content {
+    gap: 22px;
+    margin-top: 24px;
+  }
+
+  .aboutLink {
+    margin-top: 22px;
+    padding: 9px 16px;
+  }
+
+  .description {
+    font-size: 0.88rem;
+    line-height: 1.6;
   }
 
   .stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .statCard {
+    min-height: 0;
+    padding: 11px 9px;
+  }
+
+  .statValue {
+    font-size: 1.4rem;
+  }
+
+  .statLabel {
+    font-size: 0.66rem;
+  }
+
+  .statSublabel {
+    font-size: 0.56rem;
+  }
+
+  .statTag {
+    margin-bottom: 4px;
+    font-size: 0.5rem;
+  }
+
+  .statInfo {
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 520px) {
+  .stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .statCard {
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
-
-    gap: 15px;
-  }
-
-  .stat strong {
-    font-size: 1.65rem;
-  }
-
-  .stat span {
-    font-size: 0.58rem;
-  }
-
-  .stat small {
-    font-size: 0.52rem;
+    gap: 0;
+    min-height: auto;
+    padding: 10px 8px;
   }
 }
 
@@ -381,14 +477,18 @@
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
-
     transform: none;
-
     transition: none;
   }
-}
-.about {
-  position: relative;
-  overflow: hidden;
-  background: transparent;
+
+  .statCard {
+    transition: none;
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .pulseDot {
+    animation: none;
+  }
 }

@@ -39,15 +39,39 @@ export default function Testimonials() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth < 768);
     };
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () =>
+      setPrefersReducedMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener("change", updatePreference);
+    return () => mediaQuery.removeEventListener("change", updatePreference);
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible || !prefersReducedMotion || isPaused) return;
+
+    const timeout = window.setTimeout(() => {
+      setActiveIndex((current) =>
+        current >= testimonials.length - 1 ? 0 : current + 1
+      );
+    }, 5000);
+
+    return () => window.clearTimeout(timeout);
+  }, [activeIndex, isPaused, isVisible, prefersReducedMotion]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -85,8 +109,8 @@ export default function Testimonials() {
     <section
       ref={sectionRef}
       id="testimonials"
-      className={`${styles.testimonials} ${
-        isVisible ? styles.isVisible : ""
+      className={`${styles.testimonials} ${isVisible ? styles.isVisible : ""} ${
+        isPaused ? styles.isPaused : ""
       }`}
       aria-labelledby="testimonials-title"
     >
@@ -125,7 +149,20 @@ export default function Testimonials() {
         </div>
 
         {/* TESTIMONIALS */}
-        <div className={styles.viewport}>
+        <div
+          className={styles.viewport}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onFocus={() => setIsPaused(true)}
+          onBlur={(event) => {
+            if (
+              !(event.relatedTarget instanceof Node) ||
+              !event.currentTarget.contains(event.relatedTarget)
+            ) {
+              setIsPaused(false);
+            }
+          }}
+        >
           <div
             className={styles.track}
             style={{
@@ -159,17 +196,34 @@ export default function Testimonials() {
         </div>
 
         {/* PROGRESS */}
-        <div className={styles.progress}>
+        <div
+          className={styles.progress}
+          role="group"
+          aria-label="Choose a testimonial"
+        >
           {testimonials.map((_, index) => (
             <button
               key={index}
               type="button"
+              aria-current={index === activeIndex ? "true" : undefined}
               className={
                 index === activeIndex ? styles.progressActive : ""
               }
               onClick={() => setActiveIndex(index)}
               aria-label={`Go to testimonial ${index + 1}`}
-            />
+            >
+              {index === activeIndex && (
+                <span
+                  key={activeIndex}
+                  className={styles.progressFill}
+                  onAnimationEnd={() => {
+                    setActiveIndex((current) =>
+                      current >= testimonials.length - 1 ? 0 : current + 1
+                    );
+                  }}
+                />
+              )}
+            </button>
           ))}
         </div>
       </div>

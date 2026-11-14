@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { gsap } from "gsap";
+import { useContactModal } from "@/components/layout/ContactModalProvider";
 import styles from "./MobileMenu.module.scss";
 
 const navigation = [
@@ -20,107 +20,63 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  const overlayRef = useRef<HTMLDivElement>(null);
+  const openContactModal = useContactModal();
   const panelRef = useRef<HTMLDivElement>(null);
-  const linksRef = useRef<HTMLDivElement>(null);
-  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Close on Escape key press
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
+    if (!isOpen) return;
+
+    const previousFocus =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
         onClose();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const panel = panelRef.current;
+      if (!panel) return;
+      const focusable = panel.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled])'
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, onClose]);
-
-  useEffect(() => {
-    const overlay = overlayRef.current;
-    const panel = panelRef.current;
-    const links = linksRef.current;
-
-    if (!overlay || !panel || !links) return;
-
-    const menuLinks = links.querySelectorAll("a");
-
-    timelineRef.current?.kill();
-
-    const tl = gsap.timeline({
-      paused: true,
-      defaults: {
-        ease: "power3.out",
-      },
-    });
-
-    tl.set(overlay, {
-      display: "block",
-    });
-
-    tl.to(
-      overlay,
-      {
-        opacity: 1,
-        duration: 0.35,
-      },
-      0
-    );
-
-    tl.to(
-      panel,
-      {
-        x: "0%",
-        duration: 0.65,
-      },
-      0
-    );
-
-    tl.fromTo(
-      menuLinks,
-      {
-        opacity: 0,
-        y: 30,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.45,
-        stagger: 0.06,
-      },
-      0.25
-    );
-
-    timelineRef.current = tl;
-
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-      tl.play();
-    } else {
-      document.body.style.overflow = "";
-
-      tl.reverse().then(() => {
-        gsap.set(overlay, {
-          display: "none",
-        });
-      });
-    }
-
     return () => {
-      document.body.style.overflow = "";
-      tl.kill();
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      previousFocus?.focus();
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   return (
     <div
-      ref={overlayRef}
-      className={styles.overlay}
+      id="navigation-drawer"
+      className={`${styles.overlay} ${isOpen ? styles.open : ""}`}
       onClick={onClose}
       aria-hidden={!isOpen}
+      inert={!isOpen}
       role="dialog"
-      aria-modal="true"
+      aria-modal={isOpen}
       aria-label="Navigation drawer"
     >
       <aside
@@ -134,6 +90,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <span className={styles.menuLabel}>MENU</span>
 
           <button
+            ref={closeButtonRef}
             type="button"
             className={styles.closeButton}
             onClick={onClose}
@@ -145,11 +102,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </div>
 
         {/* Navigation */}
-        <nav
-          ref={linksRef}
-          className={styles.navigation}
-          aria-label="Mobile navigation"
-        >
+        <nav className={styles.navigation} aria-label="Mobile navigation">
           {navigation.map((item, index) => (
             <Link
               key={item.label}
@@ -176,10 +129,17 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <div className={styles.footer}>
           <p>Have a project in mind?</p>
 
-          <Link href="#contact" className={styles.cta} onClick={onClose}>
+          <button
+            type="button"
+            className={styles.cta}
+            onClick={() => {
+              onClose();
+              openContactModal();
+            }}
+          >
             Let&apos;s Talk
             <span aria-hidden="true">↗</span>
-          </Link>
+          </button>
         </div>
       </aside>
     </div>

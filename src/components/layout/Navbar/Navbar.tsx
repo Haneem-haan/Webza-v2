@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import { useContactModal } from "@/components/layout/ContactModalProvider";
 import styles from "./Navbar.module.scss";
 import MobileMenu from "./MobileMenu";
 
@@ -15,8 +16,14 @@ export const navigation = [
 ];
 
 export default function Navbar() {
+  const openContactModal = useContactModal();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("#home");
+  const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
+  const openContactFromNavbar = useCallback(() => {
+    closeMobileMenu();
+    openContactModal();
+  }, [closeMobileMenu, openContactModal]);
 
   // Track active section on scroll
   useEffect(() => {
@@ -42,7 +49,11 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={styles.header}>
+      <header
+        className={`${styles.header} ${
+          isMobileMenuOpen ? styles.menuOpen : ""
+        }`}
+      >
         <div className={styles.container}>
           {/* Logo */}
           <Link href="#home" className={styles.logo} aria-label="Webza Home">
@@ -59,6 +70,7 @@ export default function Navbar() {
                   activeSection === item.href ? styles.active : ""
                 }`}
                 aria-current={activeSection === item.href ? "page" : undefined}
+                onClick={closeMobileMenu}
               >
                 {item.label}
               </Link>
@@ -68,17 +80,25 @@ export default function Navbar() {
           {/* Right Actions */}
           <div className={styles.actions}>
             {/* Desktop CTA */}
-            <Link href="#contact" className={styles.talkButton}>
+            <button
+              type="button"
+              className={styles.talkButton}
+              onClick={openContactFromNavbar}
+            >
               Let&apos;s Talk
               <span aria-hidden="true">↗</span>
-            </Link>
+            </button>
 
             {/* Desktop Circle / Quick Drawer */}
             <button
               type="button"
               className={styles.circleButton}
-              onClick={() => setIsMobileMenuOpen(true)}
-              aria-label="Open quick menu"
+              onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
+              aria-label={
+                isMobileMenuOpen ? "Close quick menu" : "Open quick menu"
+              }
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="navigation-drawer"
             >
               <span />
             </button>
@@ -87,9 +107,14 @@ export default function Navbar() {
             <button
               type="button"
               className={styles.menuButton}
-              onClick={() => setIsMobileMenuOpen(true)}
-              aria-label="Open navigation menu"
+              onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
+              aria-label={
+                isMobileMenuOpen
+                  ? "Close navigation menu"
+                  : "Open navigation menu"
+              }
               aria-expanded={isMobileMenuOpen}
+              aria-controls="navigation-drawer"
             >
               <span />
               <span />
@@ -102,7 +127,7 @@ export default function Navbar() {
       {/* Mobile / Side Menu */}
       <MobileMenu
         isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
+        onClose={closeMobileMenu}
       />
     </>
   );

@@ -8,6 +8,10 @@
   position: relative;
 
   width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   padding: 0px $padding-desktop 20px;
 
@@ -451,7 +455,7 @@
    TABLET
 ===================================================== */
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .work {
     padding: 90px 48px 100px;
   }
@@ -473,9 +477,10 @@
    MOBILE
 ===================================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .work {
-    padding: 85px $padding-mobile 90px;
+    min-height: 0;
+    padding: 48px $padding-mobile 52px;
 
     box-sizing: border-box;
   }
@@ -489,19 +494,23 @@
   .headingGroup h2 {
     max-width: 100%;
 
-    margin-top: 20px;
+    margin-top: 14px;
 
-    font-size: clamp(2.4rem, 9vw, 3.4rem);
+    font-size: clamp(1.95rem, 8vw, 2.7rem);
 
-    line-height: 1;
+    line-height: 1.06;
+  }
+
+  .headingGroup h2 br {
+    display: none;
   }
 
   .viewAll {
-    margin-top: 24px;
+    margin-top: 14px;
   }
 
   .projectsWrapper {
-    margin-top: 40px;
+    margin-top: 24px;
   }
 
   .projects {
@@ -521,7 +530,7 @@
   }
 
   .imageWrapper {
-    aspect-ratio: 0.9;
+    aspect-ratio: 1.08;
   }
 
   .projectInfo {
@@ -543,7 +552,7 @@
   .controls {
     justify-content: flex-start;
 
-    margin-top: 16px;
+    margin-top: 12px;
   }
 }
 
@@ -553,15 +562,15 @@
 
 @media (max-width: 480px) {
   .work {
-    padding-top: 70px;
+    padding-top: 42px;
   }
 
   .projectCard {
-    flex-basis: 86%;
+    flex-basis: 82%;
   }
 
   .headingGroup h2 {
-    font-size: 2.35rem;
+    font-size: 2.1rem;
   }
 
   .imageWrapper {

@@ -10,14 +10,26 @@
 
   z-index: 9999;
 
-  display: none;
-
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 
   background: rgba(0, 0, 0, 0.72);
 
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  transition:
+    opacity 0.35s ease,
+    visibility 0s linear 0.65s;
+}
+
+.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 0.35s ease,
+    visibility 0s;
 }
 
 /* =========================================
@@ -26,11 +38,13 @@
 
 .panel {
   position: absolute;
-  top: 0;
+  top: 66px;
   right: 0;
 
   width: min(86vw, 430px);
-  height: 100dvh;
+  height: calc(100dvh - 66px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 
   padding: 28px 28px 30px;
 
@@ -42,6 +56,11 @@
   border-left: 1px solid rgba(255, 255, 255, 0.1);
 
   transform: translateX(100%);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.open .panel {
+  transform: translateX(0);
 }
 
 /* =========================================
@@ -135,8 +154,12 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 
   color: rgba(255, 255, 255, 0.65);
+  opacity: 0;
+  transform: translateY(12px);
 
   transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
     color $transition-medium,
     padding-left $transition-medium;
 
@@ -150,6 +173,35 @@
       transform: translate(3px, -3px);
     }
   }
+}
+
+.open .navLink {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.open .navLink:nth-child(1) {
+  transition-delay: 0.12s;
+}
+
+.open .navLink:nth-child(2) {
+  transition-delay: 0.18s;
+}
+
+.open .navLink:nth-child(3) {
+  transition-delay: 0.24s;
+}
+
+.open .navLink:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+.open .navLink:nth-child(5) {
+  transition-delay: 0.36s;
+}
+
+.open .navLink:nth-child(6) {
+  transition-delay: 0.42s;
 }
 
 .number {
@@ -212,6 +264,7 @@
 }
 
 .cta {
+  appearance: none;
   width: 100%;
   min-height: 52px;
 
@@ -222,12 +275,15 @@
   padding: 0 20px;
 
   border-radius: 999px;
+  border: 0;
 
   background: $color-accent;
   color: #050505;
 
   font-size: 0.875rem;
   font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
 
   transition:
     background $transition-medium,
@@ -261,5 +317,20 @@
 
   .label {
     font-size: 1.55rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .panel {
+    top: 58px;
+    height: calc(100dvh - 58px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .panel,
+  .navLink {
+    transition: none;
   }
 }
