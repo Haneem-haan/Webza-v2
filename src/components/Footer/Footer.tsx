@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./Footer.module.scss";
 
 const links = [
@@ -22,6 +23,7 @@ const services = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
   const footerRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -67,7 +69,11 @@ export default function Footer() {
         <div className={styles.main}>
           {/* BRAND */}
           <div className={`${styles.brand} ${styles.revealItem}`}>
-            <Link href="#home" className={styles.logo} aria-label="Webza Home">
+            <Link
+              href={pathname === "/" ? "#home" : "/#home"}
+              className={styles.logo}
+              aria-label="Webza Home"
+            >
               webza<span>.</span>
             </Link>
 
@@ -121,7 +127,16 @@ export default function Footer() {
 
             <nav aria-label="Footer navigation">
               {links.map((link) => (
-                <a key={link.label} href={link.href}>
+                <a
+                  key={link.label}
+                  href={
+                    pathname === "/"
+                      ? link.href
+                      : link.href === "#work"
+                        ? "/work"
+                        : `/${link.href}`
+                  }
+                >
                   {link.label}
                 </a>
               ))}
@@ -134,7 +149,10 @@ export default function Footer() {
 
             <nav aria-label="Footer services">
               {services.map((service) => (
-                <a key={service} href="#services">
+                <a
+                  key={service}
+                  href={pathname === "/" ? "#services" : "/#services"}
+                >
                   {service}
                 </a>
               ))}

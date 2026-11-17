@@ -1,0 +1,80 @@
+@use "../../styles/variables" as *;
+
+.workPage {
+  min-height: 100svh;
+  padding: clamp(76px, 10vw, 132px) $padding-desktop 90px;
+  background:
+    radial-gradient(
+      ellipse at 82% 4%,
+      rgba(250, 204, 21, 0.055),
+      transparent 32%
+    ),
+    #050505;
+  color: $color-text;
+}
+
+.container {
+  width: 100%;
+  max-width: $container-max;
+  margin: 0 auto;
+}
+
+.intro {
+  max-width: 800px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: rgba(245, 245, 245, 0.56);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+
+  span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: $color-accent;
+  }
+}
+
+.intro h1 {
+  margin: 20px 0 0;
+  color: #f5f5f5;
+  font-size: clamp(3.2rem, 8vw, 7rem);
+  font-weight: 300;
+  letter-spacing: -0.065em;
+  line-height: 0.98;
+
+  span {
+    color: $color-accent;
+  }
+}
+
+.intro > p {
+  max-width: 480px;
+  margin: 22px 0 0;
+  color: rgba(245, 245, 245, 0.55);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 767px) {
+  .workPage {
+    min-height: 0;
+    padding: 46px $padding-mobile 56px;
+  }
+
+  .intro h1 {
+    margin-top: 15px;
+    font-size: clamp(2.8rem, 13vw, 4.2rem);
+  }
+
+  .intro > p {
+    margin-top: 14px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+}

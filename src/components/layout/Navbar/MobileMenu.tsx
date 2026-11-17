@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useContactModal } from "@/components/layout/ContactModalProvider";
 import styles from "./MobileMenu.module.scss";
 
@@ -20,6 +21,7 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const pathname = usePathname();
   const openContactModal = useContactModal();
   const panelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -106,7 +108,13 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           {navigation.map((item, index) => (
             <Link
               key={item.label}
-              href={item.href}
+              href={
+                pathname === "/"
+                  ? item.href
+                  : item.href === "#work"
+                    ? "/work"
+                    : `/${item.href}`
+              }
               className={`${styles.navLink} ${
                 index === 0 ? styles.active : ""
               }`}

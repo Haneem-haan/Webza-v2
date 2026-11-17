@@ -1,0 +1,392 @@
+.page {
+  min-height: 100dvh;
+  padding: clamp(24px, 5vw, 64px) 20px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    #090909;
+  background-size: 44px 44px;
+  color: #f5f5f5;
+}
+
+.dashboard {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.header,
+.listHeading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.header {
+  margin-bottom: 32px;
+
+  h1 {
+    margin: 8px 0 0;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 400;
+    letter-spacing: -0.05em;
+  }
+}
+
+.brand {
+  color: #f5f5f5;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+
+  span {
+    color: #facc15;
+  }
+}
+
+.eyebrow {
+  margin: 25px 0 0;
+  color: #facc15;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: rgba(245, 245, 245, 0.62);
+  font-size: 0.8rem;
+}
+
+.managementGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 18px;
+}
+
+.panel,
+.projectList,
+.loginCard {
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 16px;
+  background: rgba(13, 13, 13, 0.94);
+}
+
+.panel,
+.projectList {
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.panelHeading h2,
+.listHeading h2 {
+  margin: 8px 0 22px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.panelHeading .eyebrow,
+.listHeading .eyebrow {
+  margin-top: 0;
+}
+
+.intro {
+  margin: 0 0 20px;
+  color: rgba(245, 245, 245, 0.56);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.form {
+  display: grid;
+  gap: 15px;
+
+  label {
+    display: grid;
+    gap: 7px;
+    color: rgba(245, 245, 245, 0.76);
+    font-size: 0.78rem;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    min-height: 43px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+    outline: none;
+    background: #101010;
+    color: #f5f5f5;
+    font: inherit;
+    font-size: 0.85rem;
+    transition: border-color 160ms ease;
+
+    &:focus {
+      border-color: #facc15;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  input[type="file"] {
+    padding: 8px;
+  }
+}
+
+.hint {
+  color: rgba(245, 245, 245, 0.42);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.inlineFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.formActions,
+.projectActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    opacity 160ms ease;
+
+  &:disabled {
+    cursor: wait;
+    opacity: 0.55;
+  }
+}
+
+.primaryButton {
+  background: #facc15;
+  color: #080808;
+  font-weight: 600;
+
+  &:hover:not(:disabled) {
+    background: #ffe15a;
+  }
+}
+
+.secondaryButton {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: transparent;
+  color: #f5f5f5;
+
+  &:hover:not(:disabled) {
+    border-color: rgba(250, 204, 21, 0.7);
+    color: #facc15;
+  }
+}
+
+.adminList {
+  margin-top: 27px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  h3 {
+    margin: 0 0 12px;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+  p {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0;
+    padding: 9px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(245, 245, 245, 0.52);
+    font-size: 0.7rem;
+  }
+
+  span:first-child {
+    color: rgba(245, 245, 245, 0.85);
+  }
+}
+
+.projectList {
+  margin-top: 18px;
+}
+
+.listHeading {
+  align-items: center;
+  margin-bottom: 16px;
+
+  h2 {
+    margin-bottom: 0;
+  }
+}
+
+.projectListGrid {
+  display: grid;
+  gap: 10px;
+}
+
+.projectCard {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.projectImage {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  border-radius: 7px;
+  background: #151515;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.projectInfo {
+  min-width: 0;
+
+  h3 {
+    overflow: hidden;
+    margin: 7px 0 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  p {
+    overflow: hidden;
+    margin: 0;
+    color: rgba(245, 245, 245, 0.48);
+    font-size: 0.72rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.published,
+.draft {
+  font-size: 0.63rem;
+  letter-spacing: 0.04em;
+}
+
+.published {
+  color: #a7e6bd;
+}
+
+.draft {
+  color: #f3c86b;
+}
+
+.projectActions {
+  justify-content: flex-end;
+}
+
+.emptyState,
+.status {
+  color: rgba(245, 245, 245, 0.52);
+  font-size: 0.85rem;
+}
+
+.notice,
+.error {
+  margin: 0 0 18px;
+  padding: 11px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  font-size: 0.8rem;
+}
+
+.notice {
+  color: #a7e6bd;
+}
+
+.error {
+  color: #ff9a9a;
+}
+
+.loginCard {
+  width: min(440px, 100%);
+  margin: min(10vh, 100px) auto 0;
+  padding: clamp(24px, 6vw, 42px);
+
+  h1 {
+    margin: 8px 0 12px;
+    font-size: clamp(1.7rem, 5vw, 2.2rem);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+  }
+
+  .eyebrow {
+    margin-top: 30px;
+  }
+
+  .backLink {
+    display: inline-block;
+    margin-top: 22px;
+    color: rgba(245, 245, 245, 0.55);
+    font-size: 0.78rem;
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .managementGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding: 20px 14px;
+  }
+
+  .header {
+    align-items: flex-start;
+  }
+
+  .account {
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 0.68rem;
+  }
+
+  .projectCard {
+    grid-template-columns: 68px minmax(0, 1fr);
+    gap: 11px;
+  }
+
+  .projectActions {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}

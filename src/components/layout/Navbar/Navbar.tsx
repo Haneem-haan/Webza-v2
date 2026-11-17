@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useContactModal } from "@/components/layout/ContactModalProvider";
 import styles from "./Navbar.module.scss";
 import MobileMenu from "./MobileMenu";
@@ -16,6 +17,7 @@ export const navigation = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const openContactModal = useContactModal();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("#home");
@@ -38,14 +40,14 @@ export default function Navbar() {
           return;
         }
       }
-      setActiveSection("#home");
+      setActiveSection(pathname === "/work" ? "#work" : "#home");
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   return (
     <>
@@ -56,25 +58,41 @@ export default function Navbar() {
       >
         <div className={styles.container}>
           {/* Logo */}
-          <Link href="#home" className={styles.logo} aria-label="Webza Home">
+          <Link
+            href={pathname === "/" ? "#home" : "/#home"}
+            className={styles.logo}
+            aria-label="Webza Home"
+          >
             webza<span>.</span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className={styles.navigation} aria-label="Main navigation">
-            {navigation.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={`${styles.navLink} ${
-                  activeSection === item.href ? styles.active : ""
-                }`}
-                aria-current={activeSection === item.href ? "page" : undefined}
-                onClick={closeMobileMenu}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navigation.map((item) => {
+              const href =
+                pathname === "/"
+                  ? item.href
+                  : item.href === "#work"
+                    ? "/work"
+                    : `/${item.href}`;
+              const isActive =
+                activeSection === item.href ||
+                (pathname === "/work" && item.href === "#work");
+
+              return (
+                <Link
+                  key={item.label}
+                  href={href}
+                  className={`${styles.navLink} ${
+                    isActive ? styles.active : ""
+                  }`}
+                  aria-current={isActive ? "page" : undefined}
+                  onClick={closeMobileMenu}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Right Actions */}
