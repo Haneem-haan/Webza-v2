@@ -106,32 +106,41 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
         {/* Navigation */}
         <nav className={styles.navigation} aria-label="Mobile navigation">
-          {navigation.map((item, index) => (
-            <Link
-              key={item.label}
-              href={
-                pathname === "/"
-                  ? item.href
-                  : item.href === "#work"
-                    ? "/work"
-                    : `/${item.href}`
-              }
-              className={`${styles.navLink} ${
-                index === 0 ? styles.active : ""
-              }`}
-              onClick={onClose}
-            >
-              <span className={styles.number} aria-hidden="true">
-                {String(index + 1).padStart(2, "0")}
-              </span>
+          {navigation.map((item, index) => {
+            const href =
+              item.href === "#about"
+                ? "/about"
+                : item.href === "#work"
+                  ? "/work"
+                  : pathname === "/"
+                    ? item.href
+                    : `/${item.href}`;
+            const isActive =
+              (pathname === "/about" && item.href === "#about") ||
+              (pathname === "/work" && item.href === "#work") ||
+              (pathname === "/" && index === 0);
 
-              <span className={styles.label}>{item.label}</span>
+            return (
+              <Link
+                key={item.label}
+                href={href}
+                className={`${styles.navLink} ${
+                  isActive ? styles.active : ""
+                }`}
+                onClick={onClose}
+              >
+                <span className={styles.number} aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
 
-              <span className={styles.arrow} aria-hidden="true">
-                <ArrowUpRight size={13} strokeWidth={1.8} />
-              </span>
-            </Link>
-          ))}
+                <span className={styles.label}>{item.label}</span>
+
+                <span className={styles.arrow} aria-hidden="true">
+                  <ArrowUpRight size={13} strokeWidth={1.8} />
+                </span>
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Bottom CTA */}

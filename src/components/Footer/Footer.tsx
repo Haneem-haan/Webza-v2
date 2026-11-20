@@ -127,20 +127,22 @@ export default function Footer() {
             <h3>Links</h3>
 
             <nav aria-label="Footer navigation">
-              {links.map((link) => (
-                <a
-                  key={link.label}
-                  href={
-                    pathname === "/"
-                      ? link.href
-                      : link.href === "#work"
-                        ? "/work"
-                        : `/${link.href}`
-                  }
-                >
-                  {link.label}
-                </a>
-              ))}
+              {links.map((link) => {
+                const href =
+                  link.href === "#about"
+                    ? "/about"
+                    : link.href === "#work"
+                      ? "/work"
+                      : pathname === "/"
+                        ? link.href
+                        : `/${link.href}`;
+
+                return (
+                  <Link key={link.label} href={href}>
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
 

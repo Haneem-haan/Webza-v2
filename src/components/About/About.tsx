@@ -144,7 +144,7 @@ export default function About() {
               building meaningful digital experiences.
             </h2>
 
-            <Link href="#process" className={styles.aboutLink}>
+            <Link href="/about" className={styles.aboutLink}>
               <span>More About Us</span>
               <span className={styles.linkArrow} aria-hidden="true">
                 <ArrowRight size={14} strokeWidth={2} />

@@ -41,7 +41,13 @@ export default function Navbar() {
           return;
         }
       }
-      setActiveSection(pathname === "/work" ? "#work" : "#home");
+      setActiveSection(
+        pathname === "/work"
+          ? "#work"
+          : pathname === "/about"
+            ? "#about"
+            : "#home"
+      );
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -71,14 +77,17 @@ export default function Navbar() {
           <nav className={styles.navigation} aria-label="Main navigation">
             {navigation.map((item) => {
               const href =
-                pathname === "/"
-                  ? item.href
+                item.href === "#about"
+                  ? "/about"
                   : item.href === "#work"
                     ? "/work"
-                    : `/${item.href}`;
+                    : pathname === "/"
+                      ? item.href
+                      : `/${item.href}`;
               const isActive =
-                activeSection === item.href ||
-                (pathname === "/work" && item.href === "#work");
+                (pathname === "/about" && item.href === "#about") ||
+                (pathname === "/work" && item.href === "#work") ||
+                (pathname === "/" && activeSection === item.href);
 
               return (
                 <Link
