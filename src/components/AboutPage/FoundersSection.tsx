@@ -47,41 +47,41 @@ export const founders: Founder[] = [
     },
   },
   {
-    id: "fasi",
-    name: "Fasi",
+    id: "fazih",
+    name: "Fazih",
     designation: "Co-Founder",
     role: "Creative Direction, Brand Strategy & UI/UX",
-    bio: "Curator of Webza's aesthetic poise. Fasi leads brand design, user interfaces, and visual systems. With a sharp eye for minimalist balance, tactile typography, and emotional resonance, he crafts brand identities that capture immediate attention and command market authority.",
+    bio: "Curator of Webza's aesthetic poise. Fazih leads brand design, user interfaces, and visual systems. With a sharp eye for minimalist balance, tactile typography, and emotional resonance, he crafts brand identities that capture immediate attention and command market authority.",
     focusTags: [
       "Creative Direction",
       "Brand Strategy",
       "UI/UX Architecture",
       "Design Systems",
     ],
-    // photoUrl: "/images/team/fasi.jpg", // Add your photo here when ready
+    // photoUrl: "/images/team/fazih.jpg", // Add your photo here when ready
     socials: {
-      linkedin: "https://www.linkedin.com/in/fasi",
+      linkedin: "https://www.linkedin.com/in/fazih",
       twitter: "https://x.com",
-      email: "mailto:fasi@webza.in",
+      email: "mailto:fazih@webza.in",
     },
   },
   {
-    id: "sherin",
-    name: "Sherin",
+    id: "sarin",
+    name: "Sarin",
     designation: "Co-Founder",
     role: "Product Strategy, Client Partnerships & Growth",
-    bio: "The strategist connecting creative vision with commercial momentum. Sherin oversees client partnerships, product roadmaps, and delivery execution. Passionate about real-world value, he ensures every project meets measurable business goals while exceeding client expectations.",
+    bio: "The strategist connecting creative vision with commercial momentum. Sarin oversees client partnerships, product roadmaps, and delivery execution. Passionate about real-world value, he ensures every project meets measurable business goals while exceeding client expectations.",
     focusTags: [
       "Product Strategy",
       "Client Partnerships",
       "Product Roadmaps",
       "Growth & Operations",
     ],
-    // photoUrl: "/images/team/sherin.jpg", // Add your photo here when ready
+    // photoUrl: "/images/team/sarin.jpg", // Add your photo here when ready
     socials: {
-      linkedin: "https://www.linkedin.com/in/sherin",
+      linkedin: "https://www.linkedin.com/in/sarin",
       twitter: "https://x.com",
-      email: "mailto:sherin@webza.in",
+      email: "mailto:sarin@webza.in",
     },
   },
 ];
