@@ -75,6 +75,30 @@
   animation: projectEnter 420ms ease both;
 }
 
+.projectCardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover {
+    .image {
+      transform: scale(1.035);
+    }
+
+    .projectArrow {
+      background: $color-accent;
+      color: #080808;
+      border-color: $color-accent;
+      transform: translate(2px, -2px);
+    }
+
+    h2 {
+      color: $color-accent;
+    }
+  }
+}
+
 .imageWrap {
   position: relative;
   overflow: hidden;
@@ -97,8 +121,23 @@
   transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.project:hover .image {
-  transform: scale(1.035);
+.projectArrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin-left: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+  vertical-align: middle;
+  transition:
+    transform 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease;
 }
 
 .projectNumber {

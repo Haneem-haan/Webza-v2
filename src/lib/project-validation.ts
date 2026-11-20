@@ -4,6 +4,9 @@ export interface ProjectFields {
   description: string;
   isPublished: boolean;
   sortOrder: number;
+  client?: string;
+  year?: string;
+  liveUrl?: string;
 }
 
 export function validateProjectFields(
@@ -64,6 +67,17 @@ export function validateProjectFields(
     return { error: "Sort order must be a whole number between 0 and 10000." };
   }
 
+  const clientValue = formData.get("client");
+  const yearValue = formData.get("year");
+  const liveUrlValue = formData.get("liveUrl");
+
+  const client =
+    typeof clientValue === "string" ? clientValue.trim().slice(0, 255) : undefined;
+  const year =
+    typeof yearValue === "string" ? yearValue.trim().slice(0, 30) : undefined;
+  const liveUrl =
+    typeof liveUrlValue === "string" ? liveUrlValue.trim().slice(0, 512) : undefined;
+
   return {
     fields: {
       title,
@@ -71,6 +85,9 @@ export function validateProjectFields(
       description,
       isPublished: publishedValue === "true",
       sortOrder,
+      client,
+      year,
+      liveUrl,
     },
   };
 }

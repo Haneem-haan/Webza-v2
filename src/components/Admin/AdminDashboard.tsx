@@ -401,6 +401,41 @@ export default function AdminDashboard() {
                   Separate categories with commas.
                 </span>
               </label>
+              <div className={styles.inlineFields}>
+                <label>
+                  Client / Company
+                  <input
+                    autoComplete="off"
+                    defaultValue={editingProject?.client ?? ""}
+                    maxLength={255}
+                    name="client"
+                    placeholder="e.g. Thekha Coffee"
+                  />
+                </label>
+                <label>
+                  Year
+                  <input
+                    autoComplete="off"
+                    defaultValue={
+                      editingProject?.year ?? new Date().getFullYear().toString()
+                    }
+                    maxLength={30}
+                    name="year"
+                    placeholder="2026"
+                  />
+                </label>
+              </div>
+              <label>
+                Live Website URL (optional)
+                <input
+                  autoComplete="off"
+                  defaultValue={editingProject?.liveUrl ?? ""}
+                  maxLength={512}
+                  name="liveUrl"
+                  placeholder="https://example.com"
+                  type="url"
+                />
+              </label>
               <label>
                 Short description
                 <textarea

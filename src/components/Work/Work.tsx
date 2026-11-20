@@ -94,7 +94,10 @@ export default function Work() {
                     } as React.CSSProperties
                   }
                 >
-                  <Link href="/work" className={styles.projectLink}>
+                  <Link
+                    href={`/work/${project.slug || project.id}`}
+                    className={styles.projectLink}
+                  >
                     <div className={styles.imageWrapper}>
                       <Image
                         src={project.image}

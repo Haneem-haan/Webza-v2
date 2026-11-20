@@ -1,7 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
+import { ArrowUpRight } from "@/components/ui/Icons";
 import { usePublishedProjects } from "./usePublishedProjects";
 import styles from "./WorkGallery.module.scss";
 
@@ -53,30 +55,40 @@ export default function WorkGallery() {
       <div className={styles.grid} aria-live="polite">
         {visibleProjects.map((project, index) => (
           <article className={styles.project} key={project.id}>
-            <div className={styles.imageWrap}>
-              <Image
-                src={project.image}
-                alt={`${project.title} project`}
-                fill
-                sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 45vw"
-                className={styles.image}
-                priority={index < 2}
-              />
-              <span className={styles.projectNumber}>
-                {String(projects.indexOf(project) + 1).padStart(2, "0")}
-              </span>
-            </div>
-            <div className={styles.projectDetails}>
-              <div className={styles.projectCopy}>
-                <h2>{project.title}</h2>
-                <p className={styles.projectCategory}>{project.category}</p>
-                {project.description && (
-                  <p className={styles.projectDescription}>
-                    {project.description}
-                  </p>
-                )}
+            <Link
+              href={`/work/${project.slug || project.id}`}
+              className={styles.projectCardLink}
+            >
+              <div className={styles.imageWrap}>
+                <Image
+                  src={project.image}
+                  alt={`${project.title} project`}
+                  fill
+                  sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 45vw"
+                  className={styles.image}
+                  priority={index < 2}
+                />
+                <span className={styles.projectNumber}>
+                  {String(projects.indexOf(project) + 1).padStart(2, "0")}
+                </span>
               </div>
-            </div>
+              <div className={styles.projectDetails}>
+                <div className={styles.projectCopy}>
+                  <h2>
+                    {project.title}
+                    <span className={styles.projectArrow} aria-hidden="true">
+                      <ArrowUpRight size={13} strokeWidth={2} />
+                    </span>
+                  </h2>
+                  <p className={styles.projectCategory}>{project.category}</p>
+                  {project.description && (
+                    <p className={styles.projectDescription}>
+                      {project.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </Link>
           </article>
         ))}
         {visibleProjects.length === 0 && (
