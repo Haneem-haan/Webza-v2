@@ -2,6 +2,7 @@
 
 import { useContactModal } from "@/components/layout/ContactModalProvider";
 import Link from "next/link";
+import { ArrowUpRight } from "@/components/ui/Icons";
 import styles from "./Hero.module.scss";
 
 export default function Hero() {
@@ -48,7 +49,7 @@ export default function Hero() {
             >
               <span>Start a Project</span>
               <span className={styles.arrow} aria-hidden="true">
-                ↗
+                <ArrowUpRight size={14} strokeWidth={2} />
               </span>
             </button>
 
@@ -58,7 +59,7 @@ export default function Hero() {
             >
               <span>View Our Work</span>
               <span className={styles.arrow} aria-hidden="true">
-                ↗
+                <ArrowUpRight size={14} strokeWidth={2} />
               </span>
             </Link>
           </div>

@@ -10,6 +10,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { ArrowUpRight } from "@/components/ui/Icons";
 import styles from "./ContactModal.module.scss";
 
 const ContactModalContext = createContext<(() => void) | null>(null);
@@ -164,7 +165,10 @@ export default function ContactModalProvider({
                   />
                 </label>
                 <button className={styles.submitButton} type="submit">
-                  Send inquiry <span aria-hidden="true">↗</span>
+                  Send inquiry{" "}
+                  <span className={styles.submitArrow} aria-hidden="true">
+                    <ArrowUpRight size={14} strokeWidth={2} />
+                  </span>
                 </button>
                 <p className={styles.formNote}>
                   Your email app will open with these details ready to send.

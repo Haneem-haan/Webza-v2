@@ -183,14 +183,16 @@
     box-shadow: 0 8px 24px -4px rgba(255, 210, 31, 0.35);
 
     .linkArrow {
-      transform: translateX(5px);
+      transform: translateX(4px);
     }
   }
 }
 
 .linkArrow {
-  font-size: 1rem;
-  transition: transform 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* =====================================================

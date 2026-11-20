@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight } from "@/components/ui/Icons";
 import styles from "./Testimonials.module.scss";
 
 const testimonials = [
@@ -135,7 +136,7 @@ export default function Testimonials() {
               onClick={previous}
               aria-label="Previous testimonial"
             >
-              ←
+              <ArrowLeft size={16} strokeWidth={2} />
             </button>
 
             <button
@@ -143,7 +144,7 @@ export default function Testimonials() {
               onClick={next}
               aria-label="Next testimonial"
             >
-              →
+              <ArrowRight size={16} strokeWidth={2} />
             </button>
           </div>
         </div>

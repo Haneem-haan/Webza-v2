@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight } from "@/components/ui/Icons";
 import styles from "./Services.module.scss";
 
 const brands = [
@@ -134,7 +135,9 @@ export default function Services() {
 
             <Link href="#work" className={styles.exploreLink}>
               Explore Services
-              <span aria-hidden="true">→</span>
+              <span className={styles.exploreArrow} aria-hidden="true">
+                <ArrowRight size={14} strokeWidth={2} />
+              </span>
             </Link>
           </div>
         </div>

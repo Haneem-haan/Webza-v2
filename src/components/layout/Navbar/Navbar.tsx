@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useContactModal } from "@/components/layout/ContactModalProvider";
+import { ArrowUpRight } from "@/components/ui/Icons";
 import styles from "./Navbar.module.scss";
 import MobileMenu from "./MobileMenu";
 
@@ -104,7 +105,9 @@ export default function Navbar() {
               onClick={openContactFromNavbar}
             >
               Let&apos;s Talk
-              <span aria-hidden="true">↗</span>
+              <span className={styles.talkArrow} aria-hidden="true">
+                <ArrowUpRight size={13} strokeWidth={2} />
+              </span>
             </button>
 
             {/* Desktop Circle / Quick Drawer */}

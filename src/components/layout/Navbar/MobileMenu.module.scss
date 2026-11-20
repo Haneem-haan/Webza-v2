@@ -220,9 +220,10 @@
 }
 
 .arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: rgba(255, 255, 255, 0.35);
-
-  font-size: 1rem;
 
   transition:
     color $transition-medium,
@@ -289,13 +290,20 @@
     background $transition-medium,
     transform $transition-medium;
 
-  span {
-    font-size: 1rem;
+  .ctaArrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform $transition-medium;
   }
 
   &:hover {
     background: $color-accent-hover;
     transform: translateY(-2px);
+
+    .ctaArrow {
+      transform: translate(2px, -2px);
+    }
   }
 }
 

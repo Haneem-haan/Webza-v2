@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { ArrowRight } from "@/components/ui/Icons";
 import styles from "./About.module.scss";
 
 interface StatItem {
@@ -146,7 +147,7 @@ export default function About() {
             <Link href="#process" className={styles.aboutLink}>
               <span>More About Us</span>
               <span className={styles.linkArrow} aria-hidden="true">
-                →
+                <ArrowRight size={14} strokeWidth={2} />
               </span>
             </Link>
           </div>

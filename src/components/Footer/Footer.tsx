@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ArrowUp } from "@/components/ui/Icons";
 import styles from "./Footer.module.scss";
 
 const links = [
@@ -192,7 +193,7 @@ export default function Footer() {
             onClick={scrollToTop}
             aria-label="Back to top"
           >
-            ↑
+            <ArrowUp size={16} strokeWidth={2} />
           </button>
         </div>
       </div>

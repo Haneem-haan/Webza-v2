@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowUpRight, ArrowLeft, ArrowRight } from "@/components/ui/Icons";
 import styles from "./Work.module.scss";
 import { usePublishedProjects } from "./usePublishedProjects";
 
@@ -72,7 +73,9 @@ export default function Work() {
 
         <Link href="/work" className={styles.viewAll}>
           View All Work
-          <span aria-hidden="true">↗</span>
+          <span className={styles.viewAllArrow} aria-hidden="true">
+            <ArrowUpRight size={14} strokeWidth={2} />
+          </span>
         </Link>
       </div>
 
@@ -111,7 +114,7 @@ export default function Work() {
                       </div>
 
                       <span className={styles.projectArrow} aria-hidden="true">
-                        ↗
+                        <ArrowUpRight size={15} strokeWidth={2} />
                       </span>
                     </div>
                   </Link>
@@ -126,7 +129,7 @@ export default function Work() {
                   onClick={() => moveSlider("prev")}
                   aria-label="Previous project"
                 >
-                  ←
+                  <ArrowLeft size={16} strokeWidth={2} />
                 </button>
 
                 <button
@@ -134,7 +137,7 @@ export default function Work() {
                   onClick={() => moveSlider("next")}
                   aria-label="Next project"
                 >
-                  →
+                  <ArrowRight size={16} strokeWidth={2} />
                 </button>
               </div>
             )}

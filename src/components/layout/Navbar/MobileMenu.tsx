@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useContactModal } from "@/components/layout/ContactModalProvider";
+import { ArrowUpRight } from "@/components/ui/Icons";
 import styles from "./MobileMenu.module.scss";
 
 const navigation = [
@@ -127,7 +128,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               <span className={styles.label}>{item.label}</span>
 
               <span className={styles.arrow} aria-hidden="true">
-                ↗
+                <ArrowUpRight size={13} strokeWidth={1.8} />
               </span>
             </Link>
           ))}
@@ -146,7 +147,9 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             }}
           >
             Let&apos;s Talk
-            <span aria-hidden="true">↗</span>
+            <span className={styles.ctaArrow} aria-hidden="true">
+              <ArrowUpRight size={14} strokeWidth={2} />
+            </span>
           </button>
         </div>
       </aside>

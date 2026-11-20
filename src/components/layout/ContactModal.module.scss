@@ -167,7 +167,18 @@
     transform: translateY(-2px);
     background: #ffe15a;
     box-shadow: 0 8px 26px rgba(250, 204, 21, 0.18);
+
+    .submitArrow {
+      transform: translate(2px, -2px);
+    }
   }
+}
+
+.submitArrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 180ms ease;
 }
 
 .formNote {

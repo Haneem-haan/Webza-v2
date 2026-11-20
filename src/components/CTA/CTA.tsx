@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useContactModal } from "@/components/layout/ContactModalProvider";
+import { ArrowUpRight } from "@/components/ui/Icons";
 import styles from "./CTA.module.scss";
 
 export default function CTA() {
@@ -72,7 +73,7 @@ export default function CTA() {
             >
               <span>Start a Project</span>
               <span className={styles.arrow} aria-hidden="true">
-                ↗
+                <ArrowUpRight size={14} strokeWidth={2} />
               </span>
             </button>
           </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { ArrowLeft } from "@/components/ui/Icons";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -29,7 +30,8 @@ export default function PrivacyPolicy() {
           fontSize: "0.9rem",
         }}
       >
-        ← Back to Home
+        <ArrowLeft size={14} strokeWidth={2} />
+        Back to Home
       </Link>
       <h1
         style={{
